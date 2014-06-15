@@ -21,7 +21,7 @@ namespace hpgc {
         ~MasterRole();
 
     private:
-        bool m_masterRuning;
+        bool m_masterRunning;
         std::queue<int> m_activeSlaves;
         std::vector<Record > m_statistics;
         RPCNetwork * m_net;

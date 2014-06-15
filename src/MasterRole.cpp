@@ -75,9 +75,9 @@ namespace hpgc {
     int MasterRole::Action() {
         TaskState * task = nullptr;
         DataMessage * drequest = nullptr;
-        while (m_masterRuning) {
+        while (m_masterRunning) {
             if (CheckAllFinished()) {
-                m_masterRuning = false;
+                m_masterRunning = false;
                 break;
             }
             /// dispatch task
@@ -112,7 +112,7 @@ namespace hpgc {
     }
 
     MasterRole::MasterRole(VectorCellar * cellar) {
-        m_masterRuning = true;
+        m_masterRunning = true;
         m_net = RPCNetwork::Get();
         for (int i = 0; i < cellar->size(); ++i) {
             m_task[Taskid(i)] = new TaskState(Taskid(i), cellar->GetByIndex(i));
