@@ -6,7 +6,7 @@
 namespace hpgc {
     class IV2VAlgorithm {
     public:
-        virtual bool Compute(VectorBarral * barrel) = 0;
+        virtual bool Compute(const VectorBarral * barrel) = 0;
     };
 }
 

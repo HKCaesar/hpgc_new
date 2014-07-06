@@ -6,18 +6,19 @@
 #include "vector.metadata.h"
 #include "rpc.h"
 #include "rpc.message.pb.h"
+#include "HpgcVectorAlgorithm.h"
 
 namespace hpgc {
     class SlaveRole : public IRole {
     public:
         virtual int Action();
-        SlaveRole(IV2VAlgorithm * task);
+        SlaveRole(GeoTask task);
         ~SlaveRole();
         int Id();
     private:
         bool m_workRunning;
         bool m_taskRunning;
-        IV2VAlgorithm * m_alg;
+        GeoTask m_alg;
         RPCNetwork * m_net;
 
         void HandleGameOver(const EmptyMessage & req, EmptyMessage * resp ,

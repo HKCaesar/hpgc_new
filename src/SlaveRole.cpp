@@ -24,7 +24,7 @@ namespace hpgc {
             ON_SCOPE_EXIT([&]() {delete barrel; });
             kRequest.set_starttime(Now());
             kRequest.set_dataindex(barrel->Id());
-            if (m_alg->Compute(barrel)) {
+            if (m_alg(barrel)) {
                 kRequest.set_type(TASK_OK);
             }
             else {
@@ -38,7 +38,7 @@ namespace hpgc {
         return 0;
     }
 
-    SlaveRole::SlaveRole(IV2VAlgorithm * task) {
+    SlaveRole::SlaveRole(GeoTask task) {
         m_alg = task;
         m_net = RPCNetwork::Get();
         m_workRunning = true;

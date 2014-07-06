@@ -3,7 +3,7 @@
 #include "SlaveRole.h"
 #include "port.debug.h"
 
-hpgc::HpgcVectorAlgorithm::HpgcVectorAlgorithm(IV2VAlgorithm * alg,
+hpgc::HpgcVectorAlgorithm::HpgcVectorAlgorithm(GeoTask alg,
         IVectorScheduler * she, IVectorPartition * par, VectorMetaData * meta) {
     m_algorithm = alg;
     m_partition = par;
@@ -27,6 +27,6 @@ hpgc::VectorMetaData * hpgc::HpgcVectorAlgorithm::GetMetaData() {
     return m_metaData;
 }
 
-hpgc::IV2VAlgorithm * hpgc::HpgcVectorAlgorithm::GetAlgorithm() {
+hpgc::GeoTask hpgc::HpgcVectorAlgorithm::GetAlgorithm() {
     return m_algorithm;
 }

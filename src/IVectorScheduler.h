@@ -14,7 +14,7 @@ namespace hpgc {
     class HpgcVectorAlgorithm;
     class IVectorScheduler {
     public:
-        virtual void Work(IV2VAlgorithm * task, HpgcVectorAlgorithm * hpgcAlg) = 0;
+        virtual void Work(GeoTask task, HpgcVectorAlgorithm * hpgcAlg) = 0;
     };
 
 }

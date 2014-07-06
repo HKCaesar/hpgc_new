@@ -8,7 +8,7 @@
 
 #include <geoalgorithm.format.h>
 
-void hpgc::M2sScheduler::Work(IV2VAlgorithm * task,
+void hpgc::M2sScheduler::Work(GeoTask task,
                               HpgcVectorAlgorithm * hpgcAlg) {
 
     auto net = RPCNetwork::Get();
