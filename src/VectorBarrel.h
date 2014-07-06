@@ -11,17 +11,17 @@ namespace hpgc {
 
     public:
 
-		int Id();
+		int Id() const ;
 
-        std::string GetSrcDataSource();
+        std::string GetSrcDataSource() const;
 
-        std::string GetSrcLayer();
+        std::string GetSrcLayer() const ;
 
-        std::list<int> GetFeatures();
+        std::list<int> GetFeatures() const ;
 
-        std::string GetDstDataSource();
+        std::string GetDstDataSource() const ;
 
-        std::string GetDstLayer();
+        std::string GetDstLayer() const;
 
         VectorBarral(std::string srcds, std::string srclayer, std::list<int> features,
                      std::string dstds, std::string dstlayer,int id)
