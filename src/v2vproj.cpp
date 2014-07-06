@@ -13,7 +13,7 @@ namespace hpgc {
     }
 
     bool V2vProj::Compute(const VectorBarral * barrel)
-{
+	{
         OGRDataSource * poSourceDs = VectorOpen(barrel->GetSrcDataSource().c_str(),
                                                 GA_ReadOnly);
         ON_SCOPE_EXIT([&]() {OGRDataSource::DestroyDataSource(poSourceDs); });

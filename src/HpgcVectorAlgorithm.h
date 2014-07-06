@@ -6,10 +6,11 @@
 #include "IV2VAlgorithm.h"
 #include "IVectorPartition.h"
 #include "IVectorScheduler.h"
+#include "common.h"
 
 namespace hpgc {
 
-	typedef std::function< bool(const VectorBarral *)> GeoTask;
+	
 
     class IVectorScheduler;
     class HpgcVectorAlgorithm {

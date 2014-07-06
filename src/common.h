@@ -3,6 +3,7 @@
 
 #include "rpc.message.pb.h"
 #include "VectorBarrel.h"
+#include <functional>
 
 namespace hpgc {
     void HPGCInit(int argc, char ** argv);
@@ -21,6 +22,7 @@ namespace hpgc {
 
     Record  RecordFromTaskMessage(TaskMessage * msg);
 
-
+	typedef std::function<bool(const VectorBarral * data)> GeoTask;
+	
 }
 #endif // common_h__
