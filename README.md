@@ -54,3 +54,8 @@ Contributes
 CopyRight
 =========
 See [COPYRIGHT.md](https://github.com/htoooth/hpgc_new/blob/master/COPYRIGHT.md).
+
+Thanks
+======
+
+Thanks to [piccolo](https://github.com/rjpower/piccolo/)'s  [rpc](https://github.com/rjpower/piccolo/blob/master/src/util/rpc.cc).
