@@ -58,4 +58,4 @@ See [COPYRIGHT.md](https://github.com/htoooth/hpgc_new/blob/master/COPYRIGHT.md)
 Thanks
 ======
 
-Thanks to [piccolo](https://github.com/rjpower/piccolo/)'s  [rpc](https://github.com/rjpower/piccolo/blob/master/src/util/rpc.cc).
+Thanks to [piccolo](https://github.com/rjpower/piccolo/)'s  [mpi-rpc](https://github.com/rjpower/piccolo/blob/master/src/util/rpc.cc) and [zht-mpi](https://bitbucket.org/xiaobingo/iit.datasys.zht-mpi).
