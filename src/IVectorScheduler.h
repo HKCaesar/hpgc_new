@@ -13,18 +13,19 @@
 
 namespace hpgc {
 
-	namespace algorithm {
-		class HpgcVectorAlgorithm;
-	}
+namespace algorithm {
+class HpgcVectorAlgorithm;
+}
 
-	namespace scheduler {
+namespace scheduler {
 
 
-		class IVectorScheduler {
-		public:
-			virtual void Work(task::GeoTask tk, algorithm::HpgcVectorAlgorithm * hpgcAlg) = 0;
-		};
-	}
+class IVectorScheduler {
+public:
+    virtual void Work(task::GeoTask tk,
+                      algorithm::HpgcVectorAlgorithm * hpgcAlg) = 0;
+};
+}
 }
 
 #endif

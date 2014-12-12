@@ -7,7 +7,7 @@
 #include <string>
 
 namespace hpgc {
-	void Init(int argc, char ** argv);
+void Init(int argc, char ** argv);
 }
-   
+
 #endif // common_h__

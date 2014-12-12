@@ -5,13 +5,13 @@
 #include "VectorBarrel.h"
 
 namespace hpgc {
-	namespace role {
+namespace role {
 
-		class IRole {
-		public:
-			virtual int Action() = 0;
-		};
-	}
+class IRole {
+public:
+    virtual int Action() = 0;
+};
+}
 }
 
 #endif

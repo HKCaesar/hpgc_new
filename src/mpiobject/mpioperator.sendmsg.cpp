@@ -1,6 +1,7 @@
 #include "mpioperator.sendmsg.h"
 
-void SendMsg( const MPIMessage & sendmsg ) {
+void SendMsg( const MPIMessage & sendmsg )
+{
     SendArray(sendmsg.GetComm(),
               sendmsg.GetProcessId(),
               sendmsg.GetTag(),

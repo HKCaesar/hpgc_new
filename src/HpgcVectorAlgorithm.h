@@ -11,31 +11,31 @@
 
 namespace hpgc {
 
-	namespace scheduler {
-		class IVectorScheduler;
-	}
+namespace scheduler {
+class IVectorScheduler;
+}
 
-	namespace algorithm {
+namespace algorithm {
 
-		class HpgcVectorAlgorithm {
+class HpgcVectorAlgorithm {
 
-		public:
-			HpgcVectorAlgorithm(task::GeoTask alg, scheduler::IVectorScheduler * she,
-				partition::IVectorPartition * par, VectorMetaData * data);
-			void Run();
+public:
+    HpgcVectorAlgorithm(task::GeoTask alg, scheduler::IVectorScheduler * she,
+                        partition::IVectorPartition * par, VectorMetaData * data);
+    void Run();
 
-			partition::IVectorPartition * GetPartition();
-			scheduler::IVectorScheduler * GetScheduler();
-			VectorMetaData  *  GetMetaData();
-			task::GeoTask  GetAlgorithm();
+    partition::IVectorPartition * GetPartition();
+    scheduler::IVectorScheduler * GetScheduler();
+    VectorMetaData  *  GetMetaData();
+    task::GeoTask  GetAlgorithm();
 
-		private:
-			task::GeoTask  m_algorithm;
-			partition::IVectorPartition * m_partition;
-			scheduler::IVectorScheduler * m_scheduler;
-			VectorMetaData * m_metaData;
-		};
-	}
+private:
+    task::GeoTask  m_algorithm;
+    partition::IVectorPartition * m_partition;
+    scheduler::IVectorScheduler * m_scheduler;
+    VectorMetaData * m_metaData;
+};
+}
 }
 
 #endif // HpgcVectorAlgorithm_h__

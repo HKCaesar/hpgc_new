@@ -9,35 +9,33 @@
 #include <geoalgorithm.format.h>
 
 namespace hpgc {
-	namespace scheduler {
+namespace scheduler {
 
-		namespace hpgc{
-			namespace algorithm{
-				class HpgcVectorAlgorithm;
-			}
-		}
+namespace hpgc {
+namespace algorithm {
+class HpgcVectorAlgorithm;
+}
+}
 
-		void M2sScheduler::Work(task::GeoTask task,
-			algorithm::HpgcVectorAlgorithm * hpgcAlg) {
+void M2sScheduler::Work(task::GeoTask task,
+                        algorithm::HpgcVectorAlgorithm * hpgcAlg)
+{
+    auto net = rpc::RPCNetwork::Get();
+    if (net->Id() == 0) {
+        auto meta = hpgcAlg->GetMetaData();
+        auto partition = hpgcAlg->GetPartition();
+        VectorCellar * srcCellar = partition->Partition(meta);
+        role::MasterRole node = { srcCellar };
+        node.Action();
+    }
+    else {
+        role::SlaveRole node = { task };
+        node.Action();
+    }
+    net->Barrier();
+}
 
-			auto net = rpc::RPCNetwork::Get();
-			if (net->Id() == 0) {
-				auto meta = hpgcAlg->GetMetaData();
-				auto partition = hpgcAlg->GetPartition();
-				VectorCellar * srcCellar = partition->Partition(meta);
-
-				role::MasterRole node = { srcCellar };
-				node.Action();
-			}
-			else {
-				role::SlaveRole node = { task };
-				node.Action();
-			}
-
-			net->Barrier();
-		}
-
-	}
+}
 }
 
 

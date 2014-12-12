@@ -172,7 +172,8 @@ private:
 };
 
 template <typename T>
-void MPIObject::PrintMe( T val ) {
+void MPIObject::PrintMe( T val )
+{
     std::cout << "NodeName:" << GetNodeName()
               << ", Rank:" << GetMe()
               << ", Data:" << val

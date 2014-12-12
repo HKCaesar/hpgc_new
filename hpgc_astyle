@@ -2,7 +2,6 @@
 --convert-tabs
 --lineend=linux
 
---indent-namespaces
 --indent-preprocessor
 
 --keep-one-line-statements
@@ -20,4 +19,4 @@
 --max-code-length=80
 --delete-empty-lines
 --break-closing-brackets
---style=attach
+--style=linux

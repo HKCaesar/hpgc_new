@@ -3,8 +3,9 @@
 #include "port.debug.h"
 
 namespace hpgc {
-    void Init(int argc, char ** argv) {
-        rpc::RPCNetwork::Init();
-    }
+void Init(int argc, char ** argv)
+{
+    rpc::RPCNetwork::Init();
+}
 }
 

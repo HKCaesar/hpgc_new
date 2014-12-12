@@ -5,10 +5,9 @@
 #include "VectorBarrel.h"
 #include <functional>
 
-namespace hpgc
-{
-	namespace task {
-		typedef std::function<bool(const VectorBarral * data)> GeoTask;
-	}
+namespace hpgc {
+namespace task {
+typedef std::function<bool(const VectorBarral * data)> GeoTask;
+}
 }
 #endif

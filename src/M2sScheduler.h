@@ -7,14 +7,14 @@
 #include "hpgc.h"
 
 namespace hpgc {
-	namespace scheduler {
+namespace scheduler {
 
-		class M2sScheduler : public IVectorScheduler {
-		public:
-			virtual void Work(task::GeoTask tk, algorithm::HpgcVectorAlgorithm * hpgcAlg);
-		};
+class M2sScheduler : public IVectorScheduler {
+public:
+    virtual void Work(task::GeoTask tk, algorithm::HpgcVectorAlgorithm * hpgcAlg);
+};
 
-	}
+}
 }
 
 #endif // M2sScheduler_h__

@@ -11,23 +11,23 @@
 #include <map>
 
 namespace hpgc {
-	namespace role {
+namespace role {
 
-		struct TaskState;
-		struct Taskid;
+struct TaskState;
+struct Taskid;
 
-		class MasterRole : public IRole {
-		public:
-			virtual int Action();
-			MasterRole(data::VectorCellar * cellar);
-			~MasterRole();
+class MasterRole : public IRole {
+public:
+    virtual int Action();
+    MasterRole(data::VectorCellar * cellar);
+    ~MasterRole();
 
-		private:
-			bool m_masterRunning;
-			std::queue<int> m_activeSlaves;
-			std::vector<data::Record> m_statistics;
-			rpc::RPCNetwork * m_net;
-		};
-	}
+private:
+    bool m_masterRunning;
+    std::queue<int> m_activeSlaves;
+    std::vector<data::Record> m_statistics;
+    rpc::RPCNetwork * m_net;
+};
+}
 }
 #endif // MasterRole_h__

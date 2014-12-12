@@ -1,6 +1,7 @@
 #include "mpioperator.recvmsg.h"
 
-void RecvMsg( MPIMessage & recvmsg ) {
+void RecvMsg( MPIMessage & recvmsg )
+{
     RecvArray(recvmsg.GetComm(),
               recvmsg.GetProcessId(),
               recvmsg.GetTag(),

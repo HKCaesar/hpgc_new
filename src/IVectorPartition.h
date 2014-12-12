@@ -5,15 +5,15 @@
 #include "vector.metadata.h"
 
 namespace hpgc {
-	namespace partition {
+namespace partition {
 
-		using namespace hpgc::data;
+using namespace hpgc::data;
 
-		class IVectorPartition {
-		public:
-			virtual VectorCellar * Partition(VectorMetaData * meta) = 0;
+class IVectorPartition {
+public:
+    virtual VectorCellar * Partition(VectorMetaData * meta) = 0;
 
-		};
-	}
+};
+}
 }
 #endif // VectorPartition_h__

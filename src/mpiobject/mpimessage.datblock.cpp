@@ -15,7 +15,8 @@ typedef struct _datblock {
 
 } SaveTypeDatBlock;
 
-_datblock::_datblock() {
+_datblock::_datblock()
+{
     MPI_Get_address(&m_Temp.DID, m_Displs);
     MPI_Get_address(&m_Temp.PID, m_Displs + 1);
     MPI_Get_address(&m_Temp.tStart, m_Displs + 2);
@@ -36,12 +37,14 @@ _datblock::_datblock() {
 }
 
 
-MPI_Datatype Commit_MPI_Type_DatBlock() {
+MPI_Datatype Commit_MPI_Type_DatBlock()
+{
     SaveTypeDatBlock * pTemp = port::Singleton<SaveTypeDatBlock>::CreateInstance();
     return pTemp->m_NewMPIProInfo;
 }
 
-void Free_MPI_Type_DatBlock() {
+void Free_MPI_Type_DatBlock()
+{
     SaveTypeDatBlock * pTemp = port::Singleton<SaveTypeDatBlock>::CreateInstance();
     MPI_Type_free(&pTemp->m_NewMPIProInfo);
     port::Singleton<SaveTypeDatBlock>::DestoryInstance();

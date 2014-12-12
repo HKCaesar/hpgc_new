@@ -11,7 +11,7 @@ end
 
 desc "Beautiful code"
 task :format do
-    sh 'astyle --options=hpgc_astyle --recursive src/*.cpp src/*.h'
+    sh './tool/astyle --options=hpgc_astyle --recursive src/*.cpp src/*.h'
 end
 
 desc 'generate protobuf file'

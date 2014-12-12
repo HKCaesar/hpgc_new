@@ -14,7 +14,8 @@
 #define SLAVE_RANK 1
 
 
-int ProAcquireLock( int * pMutex ) {
+int ProAcquireLock( int * pMutex )
+{
     MPIObject oMPI;
     if (oMPI.IsMaster()) {
         int sig1 = 0;
@@ -47,7 +48,8 @@ int ProAcquireLock( int * pMutex ) {
     return 1;
 }
 
-void ProReleaseLock() {
+void ProReleaseLock()
+{
     MPIObject oMPI;
     if (oMPI.IsSlave()) {
         int sig = 0;

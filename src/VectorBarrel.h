@@ -7,49 +7,49 @@
 #include "rpc.message.pb.h"
 
 namespace hpgc {
-	namespace data {
+namespace data {
 
-		class VectorBarral {
+class VectorBarral {
 
-		public:
+public:
 
-			int Id() const;
+    int Id() const;
 
-			std::string GetSrcDataSource() const;
+    std::string GetSrcDataSource() const;
 
-			std::string GetSrcLayer() const;
+    std::string GetSrcLayer() const;
 
-			std::list<int> GetFeatures() const;
+    std::list<int> GetFeatures() const;
 
-			std::string GetDstDataSource() const;
+    std::string GetDstDataSource() const;
 
-			std::string GetDstLayer() const;
+    std::string GetDstLayer() const;
 
-			VectorBarral(std::string srcds, std::string srclayer, std::list<int> features,
-				std::string dstds, std::string dstlayer, int id)
-				: m_srcDatasource(srcds)
-				, m_srcLayer(srclayer)
-				, m_features(features)
-				, m_dstDatasource(dstds)
-				, m_dstLayer(dstlayer)
-				, m_id(id){
-			};
+    VectorBarral(std::string srcds, std::string srclayer, std::list<int> features,
+                 std::string dstds, std::string dstlayer, int id)
+        : m_srcDatasource(srcds)
+        , m_srcLayer(srclayer)
+        , m_features(features)
+        , m_dstDatasource(dstds)
+        , m_dstLayer(dstlayer)
+        , m_id(id) {
+    };
 
-			VectorBarral() {};
+    VectorBarral() {};
 
-		private:
-			std::string m_srcDatasource;
-			std::string m_srcLayer;
-			std::list<int> m_features;
-			std::string m_dstDatasource;
-			std::string m_dstLayer;
-			int m_id;
-		};
+private:
+    std::string m_srcDatasource;
+    std::string m_srcLayer;
+    std::list<int> m_features;
+    std::string m_dstDatasource;
+    std::string m_dstLayer;
+    int m_id;
+};
 
-		VectorBarral * BarralFromDataMessage(DataMessage * msg);
-		DataMessage  * DataMessageFromBarral(VectorBarral * barral);
+VectorBarral * BarralFromDataMessage(DataMessage * msg);
+DataMessage  * DataMessageFromBarral(VectorBarral * barral);
 
-	}
+}
 }
 
 #endif

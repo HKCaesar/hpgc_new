@@ -12,7 +12,8 @@ typedef struct _Proinfo {
 
 } SaveTypeProInfo;
 
-_Proinfo::_Proinfo() {
+_Proinfo::_Proinfo()
+{
     MPI_Get_address(&m_Temp.PID, m_Displs);
     MPI_Get_address(&m_Temp.dfStart, m_Displs + 1);
     m_Displs[2] = sizeof(ProcInfo);
@@ -28,12 +29,14 @@ _Proinfo::_Proinfo() {
     MPI_Type_commit(&m_NewMPIProInfo);
 }
 
-MPI_Datatype Commit_MPI_Type_ProInfo() {
+MPI_Datatype Commit_MPI_Type_ProInfo()
+{
     SaveTypeProInfo * poTemp = port::Singleton<SaveTypeProInfo>::CreateInstance();
     return poTemp->m_NewMPIProInfo;
 }
 
-void Free_MPI_Type_ProInfo() {
+void Free_MPI_Type_ProInfo()
+{
     SaveTypeProInfo * poTemp = port::Singleton<SaveTypeProInfo>::CreateInstance();
     MPI_Type_free(&poTemp->m_NewMPIProInfo);
     port::Singleton<SaveTypeProInfo>::DestoryInstance();

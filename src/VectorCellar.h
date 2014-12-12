@@ -7,24 +7,24 @@
 #include <vector>
 
 namespace hpgc {
-	namespace data {
+namespace data {
 
-		class VectorCellar {
-		public:
-			virtual void AddBarrel(VectorBarral * barrel);
+class VectorCellar {
+public:
+    virtual void AddBarrel(VectorBarral * barrel);
 
-			virtual VectorBarral * GetByIndex(int index);
+    virtual VectorBarral * GetByIndex(int index);
 
-			virtual bool IsEmpty();
+    virtual bool IsEmpty();
 
-			virtual int size();
+    virtual int size();
 
-			~VectorCellar();
+    ~VectorCellar();
 
-		private:
-			std::vector<VectorBarral * > m_barrels;
-		};
-	}
+private:
+    std::vector<VectorBarral * > m_barrels;
+};
+}
 }
 
 #endif
