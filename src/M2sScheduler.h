@@ -2,15 +2,18 @@
 #define M2sScheduler_h__
 
 #include "IVectorScheduler.h"
+#include "HpgcVectorAlgorithm.h"
 #include "hpgc.h"
 
 namespace hpgc {
+	namespace scheduler {
 
-    class M2sScheduler: public IVectorScheduler {
-    public:
-        virtual void Work(GeoTask task, HpgcVectorAlgorithm * hpgcAlg);
-    };
+		class M2sScheduler : public IVectorScheduler {
+		public:
+			virtual void Work(GeoTask task, algorithm::HpgcVectorAlgorithm * hpgcAlg);
+		};
 
+	}
 }
 
 #endif // M2sScheduler_h__

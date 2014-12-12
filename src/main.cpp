@@ -102,12 +102,12 @@ int main(int argc, char ** argv) {
 
     }
 
-    auto scheduler = new M2sScheduler();
+    auto scheduler = new scheduler::M2sScheduler();
     auto vct = new V2vProj(argc, argv);
 
 	GeoTask task = std::bind(&V2vProj::Compute, vct, rpc::_1);
 
-    auto alg = new HpgcVectorAlgorithm(task, scheduler, partition, metadata);
+    auto alg = new algorithm::HpgcVectorAlgorithm(task, scheduler, partition, metadata);
     alg->Run();
     return 0;
 }
