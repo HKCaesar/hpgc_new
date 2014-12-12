@@ -98,7 +98,7 @@ namespace hpgc {
 						int source = -1;
 						TaskMessage tRequest;
 						if (m_net->TryRead(pair.second->slave, WORKER_TASK_DONE, &tRequest, &source)) {
-							Record stat = RecordFromTaskMessage(&tRequest);
+							data::Record stat = data::RecordFromTaskMessage(&tRequest);
 							stat.slave = pair.second->slave;
 							m_statistics.push_back(stat);
 							pair.second->status = TaskState::FINISHED;

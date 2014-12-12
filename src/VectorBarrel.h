@@ -4,6 +4,7 @@
 
 #include <list>
 #include <string>
+#include "rpc.message.pb.h"
 
 namespace hpgc {
 	namespace data {
@@ -44,6 +45,9 @@ namespace hpgc {
 			std::string m_dstLayer;
 			int m_id;
 		};
+
+		VectorBarral * BarralFromDataMessage(DataMessage * msg);
+		DataMessage  * DataMessageFromBarral(VectorBarral * barral);
 
 	}
 }

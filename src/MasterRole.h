@@ -5,6 +5,7 @@
 #include "IVectorScheduler.h"
 #include "rpc.h"
 #include "hpgc.h"
+#include "Record.h"
 
 #include <queue>
 #include <map>
@@ -18,13 +19,13 @@ namespace hpgc {
 		class MasterRole : public IRole {
 		public:
 			virtual int Action();
-			MasterRole(VectorCellar * cellar);
+			MasterRole(data::VectorCellar * cellar);
 			~MasterRole();
 
 		private:
 			bool m_masterRunning;
 			std::queue<int> m_activeSlaves;
-			std::vector<Record > m_statistics;
+			std::vector<data::Record> m_statistics;
 			rpc::RPCNetwork * m_net;
 		};
 	}
