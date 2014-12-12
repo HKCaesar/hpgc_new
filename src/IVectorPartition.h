@@ -7,13 +7,12 @@
 namespace hpgc {
 namespace partition {
 
-using namespace hpgc::data;
-
 class IVectorPartition {
 public:
-    virtual VectorCellar * Partition(VectorMetaData * meta) = 0;
+    virtual data::VectorCellar * Partition(data::VectorMetaData * meta) = 0;
 
 };
+
 }
 }
 #endif // VectorPartition_h__

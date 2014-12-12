@@ -11,7 +11,8 @@ class IRole {
 public:
     virtual int Action() = 0;
 };
-}
-}
+
+} /// role
+} /// hpgc
 
 #endif

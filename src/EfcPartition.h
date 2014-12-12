@@ -16,6 +16,7 @@ public:
 private:
     int m_efc;
 };
+
 }
 }
 #endif // CvctPartition_h__
