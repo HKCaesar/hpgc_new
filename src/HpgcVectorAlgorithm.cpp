@@ -3,11 +3,12 @@
 #include "SlaveRole.h"
 #include "port.debug.h"
 #include "IVectorScheduler.h"
+#include "ITask.h"
 
 namespace hpgc {
 	namespace algorithm {
 
-		HpgcVectorAlgorithm::HpgcVectorAlgorithm(GeoTask alg,
+		HpgcVectorAlgorithm::HpgcVectorAlgorithm(task::GeoTask alg,
 			scheduler::IVectorScheduler * she, partition::IVectorPartition * par, VectorMetaData * meta) {
 			m_algorithm = alg;
 			m_partition = par;
@@ -31,7 +32,7 @@ namespace hpgc {
 			return m_metaData;
 		}
 
-		GeoTask HpgcVectorAlgorithm::GetAlgorithm() {
+		task::GeoTask HpgcVectorAlgorithm::GetAlgorithm() {
 			return m_algorithm;
 		}
 	}

@@ -6,6 +6,7 @@
 #include "IV2VAlgorithm.h"
 #include "IVectorPartition.h"
 #include "IVectorScheduler.h"
+#include "ITask.h"
 #include "hpgc.h"
 
 namespace hpgc {
@@ -19,17 +20,17 @@ namespace hpgc {
 		class HpgcVectorAlgorithm {
 
 		public:
-			HpgcVectorAlgorithm(GeoTask alg, scheduler::IVectorScheduler * she,
+			HpgcVectorAlgorithm(task::GeoTask alg, scheduler::IVectorScheduler * she,
 				partition::IVectorPartition * par, VectorMetaData * data);
 			void Run();
 
 			partition::IVectorPartition * GetPartition();
 			scheduler::IVectorScheduler * GetScheduler();
 			VectorMetaData  *  GetMetaData();
-			GeoTask  GetAlgorithm();
+			task::GeoTask  GetAlgorithm();
 
 		private:
-			GeoTask  m_algorithm;
+			task::GeoTask  m_algorithm;
 			partition::IVectorPartition * m_partition;
 			scheduler::IVectorScheduler * m_scheduler;
 			VectorMetaData * m_metaData;

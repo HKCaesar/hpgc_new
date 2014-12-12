@@ -39,7 +39,7 @@ namespace hpgc {
 			return 0;
 		}
 
-		SlaveRole::SlaveRole(GeoTask task) {
+		SlaveRole::SlaveRole(task::GeoTask task) {
 			m_alg = task;
 			m_net = rpc::RPCNetwork::Get();
 			m_workRunning = true;

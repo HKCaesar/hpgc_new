@@ -24,8 +24,5 @@ namespace hpgc {
     DataMessage  * DataMessageFromBarral(VectorBarral * barral);
 
     Record  RecordFromTaskMessage(TaskMessage * msg);
-
-	typedef std::function<bool(const VectorBarral * data)> GeoTask;
-	
 }
 #endif // common_h__

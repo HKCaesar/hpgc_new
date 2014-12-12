@@ -17,7 +17,7 @@ namespace hpgc {
 			}
 		}
 
-		void M2sScheduler::Work(GeoTask task,
+		void M2sScheduler::Work(task::GeoTask task,
 			algorithm::HpgcVectorAlgorithm * hpgcAlg) {
 
 			auto net = rpc::RPCNetwork::Get();

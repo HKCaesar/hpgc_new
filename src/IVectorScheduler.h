@@ -6,6 +6,7 @@
 #include "IV2VAlgorithm.h"
 #include "VectorCellar.h"
 #include "HpgcVectorAlgorithm.h"
+#include "ITask.h"
 #include "hpgc.h"
 
 #include <list>
@@ -21,7 +22,7 @@ namespace hpgc {
 
 		class IVectorScheduler {
 		public:
-			virtual void Work(GeoTask task, algorithm::HpgcVectorAlgorithm * hpgcAlg) = 0;
+			virtual void Work(task::GeoTask task, algorithm::HpgcVectorAlgorithm * hpgcAlg) = 0;
 		};
 	}
 }

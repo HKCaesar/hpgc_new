@@ -7,19 +7,20 @@
 #include "rpc.h"
 #include "rpc.message.pb.h"
 #include "HpgcVectorAlgorithm.h"
+#include "ITask.h"
 
 namespace hpgc {
 	namespace role {
 		class SlaveRole : public IRole {
 		public:
 			virtual int Action();
-			SlaveRole(GeoTask task);
+			SlaveRole(task::GeoTask task);
 			~SlaveRole();
 			int Id();
 		private:
 			bool m_workRunning;
 			bool m_taskRunning;
-			GeoTask m_alg;
+			task::GeoTask m_alg;
 			rpc::RPCNetwork * m_net;
 
 			void HandleGameOver(const EmptyMessage & req, EmptyMessage * resp,
