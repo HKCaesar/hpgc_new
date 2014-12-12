@@ -11,12 +11,6 @@
 namespace hpgc {
 namespace scheduler {
 
-namespace hpgc {
-namespace algorithm {
-class HpgcVectorAlgorithm;
-}
-}
-
 void M2sScheduler::Work(task::GeoTask task,
                         algorithm::HpgcVectorAlgorithm * hpgcAlg)
 {
