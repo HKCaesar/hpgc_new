@@ -11,6 +11,7 @@
 
 namespace hpgc {
 
+/// forward declare
 namespace scheduler {
 class IVectorScheduler;
 }

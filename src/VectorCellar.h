@@ -24,7 +24,7 @@ public:
 private:
     std::vector<VectorBarral * > m_barrels;
 };
-}
-}
 
+}
+}
 #endif

@@ -1,6 +1,7 @@
 #include "Record.h"
 namespace hpgc {
 namespace data {
+
 Record RecordFromTaskMessage(TaskMessage * msg)
 {
     Record record;
@@ -9,5 +10,6 @@ Record RecordFromTaskMessage(TaskMessage * msg)
     record.id = msg->dataindex();
     return record;
 }
+
 }
 }

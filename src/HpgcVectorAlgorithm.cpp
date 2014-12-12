@@ -43,5 +43,6 @@ task::GeoTask HpgcVectorAlgorithm::GetAlgorithm()
 {
     return m_algorithm;
 }
+
 }
 }

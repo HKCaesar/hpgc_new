@@ -2,9 +2,10 @@
 #include "rpc.h"
 
 namespace hpgc {
-void Init(int argc, char ** argv)
-{
+
+void Init(int argc, char ** argv) {
     rpc::RPCNetwork::Init();
 }
+
 }
 

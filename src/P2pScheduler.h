@@ -10,9 +10,9 @@ using namespace role;
 
 class P2pScheduler : public IVectorScheduler {
 public:
-    virtual void Work(data::VectorCellar * data, std::list<IRole> roles,
+    virtual void Work(data::VectorCellar * dt, std::list<IRole> roles,
                       algorithm::IV2VAlgorithm * compute);
-    P2pScheduler(data::VectorCellar * data, std::list<IRole> role,
+    P2pScheduler(data::VectorCellar * dt, std::list<IRole> role,
                  algorithm::IV2VAlgorithm * alg);
 
 private:

@@ -28,6 +28,8 @@ private:
     std::vector<data::Record> m_statistics;
     rpc::RPCNetwork * m_net;
 };
+
+
 }
 }
 #endif // MasterRole_h__

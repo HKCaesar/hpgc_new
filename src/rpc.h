@@ -63,9 +63,6 @@ struct CallbackInfo {
     bool spawn_thread;
 };
 
-extern int ANY_SOURCE;
-extern int ANY_TAG;
-
 class RPCNetwork {
 public:
     bool Active() const;
