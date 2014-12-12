@@ -3,7 +3,7 @@
 
 namespace hpgc {
 namespace algorithm {
-bool Test::Compute(const VectorBarral * barrel)
+bool Test::Compute(const data::VectorBarral * barrel)
 {
     return true;
 }

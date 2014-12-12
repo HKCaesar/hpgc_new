@@ -22,7 +22,7 @@ int SlaveRole::Action()
         }
         m_taskRunning = true;
         TaskMessage kRequest;
-        VectorBarral * barrel = BarralFromDataMessage(&dRequest);
+        data::VectorBarral * barrel = data::BarralFromDataMessage(&dRequest);
         ON_SCOPE_EXIT([&]() {delete barrel; });
         kRequest.set_starttime(TimePoint2String(Now()));
         kRequest.set_dataindex(barrel->Id());

@@ -3,13 +3,11 @@
 
 #include "VectorBarrel.h"
 
-using namespace hpgc::data;
-
 namespace hpgc {
 namespace algorithm {
 class IV2VAlgorithm {
 public:
-    virtual bool Compute(const VectorBarral * barrel) = 0;
+    virtual bool Compute(const data::VectorBarral * barrel) = 0;
 };
 }
 }

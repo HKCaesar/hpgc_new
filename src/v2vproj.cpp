@@ -14,7 +14,7 @@ V2vProj::V2vProj(int argc, char ** argv)
     m_ogrSr->SetFromUserInput(m_srs);
 }
 
-bool V2vProj::Compute(const VectorBarral * barrel)
+bool V2vProj::Compute(const data::VectorBarral * barrel)
 {
     OGRDataSource * poSourceDs = VectorOpen(barrel->GetSrcDataSource().c_str(),
                                             GA_ReadOnly);

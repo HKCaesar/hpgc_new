@@ -4,7 +4,6 @@
 #include "IVectorScheduler.h"
 #include "HpgcVectorAlgorithm.h"
 #include "ITask.h"
-#include "hpgc.h"
 
 namespace hpgc {
 namespace scheduler {

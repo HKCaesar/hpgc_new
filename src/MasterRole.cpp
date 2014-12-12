@@ -25,14 +25,14 @@ struct TaskState {
         PENDING = 0, ACTIVE = 1, FINISHED = 2
     };
 
-    TaskState(Taskid id, VectorBarral * data) :
+    TaskState(Taskid id, data::VectorBarral * data) :
         id(id), status(PENDING), data(data), slave(-1) {
     }
 
     Taskid id;
     Status status;
     int slave;
-    VectorBarral * data;
+    data::VectorBarral * data;
 };
 
 static std::map<Taskid, TaskState *> m_task;
@@ -114,7 +114,7 @@ int MasterRole::Action()
     return 0;
 }
 
-MasterRole::MasterRole(VectorCellar * cellar)
+MasterRole::MasterRole(data::VectorCellar * cellar)
 {
     m_masterRunning = true;
     m_net = rpc::RPCNetwork::Get();

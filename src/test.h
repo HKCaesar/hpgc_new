@@ -8,7 +8,7 @@ namespace algorithm {
 
 class Test : public IV2VAlgorithm {
 public:
-    virtual bool Compute(const VectorBarral * barrel);
+    virtual bool Compute(const data::VectorBarral * barrel);
 };
 }
 }
