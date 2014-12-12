@@ -1,32 +1,39 @@
 #include "vector.metadata.h"
 
-hpgc::VectorMetaData::~VectorMetaData() {
-}
-
-hpgc::VectorMetaData::VectorMetaData(const char * srcds, const char * srclayer,
-                                     const char * dstds, const char * dstlayer) {
-    m_src = new MetaData(srcds, srclayer);
-    m_dst = new MetaData(dstds, dstlayer);
-}
+namespace hpgc {
+	namespace data{
 
 
-hpgc::MetaData * hpgc::VectorMetaData::GetSrcMetaData() {
-    return m_src;
-}
+		VectorMetaData::~VectorMetaData() {
+		}
 
-hpgc::MetaData * hpgc::VectorMetaData::GetDstMetaData() {
-    return m_dst;
-}
+		VectorMetaData::VectorMetaData(const char * srcds, const char * srclayer,
+			const char * dstds, const char * dstlayer) {
+			m_src = new MetaData(srcds, srclayer);
+			m_dst = new MetaData(dstds, dstlayer);
+		}
 
-const char * hpgc::MetaData::GetDataSourceName() {
-    return m_dataSource;
-}
 
-hpgc::MetaData::MetaData(const char * ds, const char * layer)
-    : m_dataSource(ds)
-    , m_layer(layer) {
-}
+		MetaData * VectorMetaData::GetSrcMetaData() {
+			return m_src;
+		}
 
-const char * hpgc::MetaData::GetLayerName() {
-    return m_layer;
+		MetaData * VectorMetaData::GetDstMetaData() {
+			return m_dst;
+		}
+
+		const char * MetaData::GetDataSourceName() {
+			return m_dataSource;
+		}
+
+		MetaData::MetaData(const char * ds, const char * layer)
+			: m_dataSource(ds)
+			, m_layer(layer) {
+		}
+
+		const char * MetaData::GetLayerName() {
+			return m_layer;
+		}
+
+	}
 }

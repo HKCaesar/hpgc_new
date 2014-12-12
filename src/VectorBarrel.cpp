@@ -1,29 +1,32 @@
 #include "VectorBarrel.h"
 
+namespace hpgc{
+	namespace data {
 
-std::string hpgc::VectorBarral::GetSrcDataSource() const{
-    return m_srcDatasource;
+		std::string VectorBarral::GetSrcDataSource() const{
+			return m_srcDatasource;
+		}
+
+		std::string VectorBarral::GetSrcLayer() const {
+			return m_srcLayer;
+		}
+
+		std::list<int> VectorBarral::GetFeatures() const {
+			return m_features;
+		}
+
+		std::string VectorBarral::GetDstDataSource() const {
+			return m_dstDatasource;
+		}
+
+		std::string VectorBarral::GetDstLayer() const {
+			return m_dstLayer;
+		}
+
+		int VectorBarral::Id() const {
+			return m_id;
+		}
+
+
+	}
 }
-
-std::string hpgc::VectorBarral::GetSrcLayer() const {
-    return m_srcLayer;
-}
-
-std::list<int> hpgc::VectorBarral::GetFeatures() const {
-    return m_features;
-}
-
-std::string hpgc::VectorBarral::GetDstDataSource() const {
-    return m_dstDatasource;
-}
-
-std::string hpgc::VectorBarral::GetDstLayer() const {
-    return m_dstLayer;
-}
-
-int hpgc::VectorBarral::Id() const {
-	return m_id;
-}
-
-
-

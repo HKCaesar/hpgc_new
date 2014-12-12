@@ -3,6 +3,8 @@
 
 #include "IVectorPartition.h"
 
+using namespace hpgc::data;
+
 namespace hpgc {
 	namespace partition {
 		class EfcPartition : public IVectorPartition {

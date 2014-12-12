@@ -1,21 +1,26 @@
 #include "VectorCellar.h"
 #include <algorithm>
 
-void hpgc::VectorCellar::AddBarrel(VectorBarral * barrel) {
-    this->m_barrels.push_back(barrel);
-}
+namespace hpgc{
+	namespace data {
 
-hpgc::VectorBarral * hpgc::VectorCellar::GetByIndex(int index) {
-    return m_barrels[index];
-}
+		void VectorCellar::AddBarrel(VectorBarral * barrel) {
+			this->m_barrels.push_back(barrel);
+		}
 
-bool hpgc::VectorCellar::IsEmpty() {
-    return this->m_barrels.empty();
-}
+		VectorBarral * VectorCellar::GetByIndex(int index) {
+			return m_barrels[index];
+		}
 
-hpgc::VectorCellar::~VectorCellar() {
-}
+		bool VectorCellar::IsEmpty() {
+			return this->m_barrels.empty();
+		}
 
-int hpgc::VectorCellar::size() {
-    return this->m_barrels.size();
+		VectorCellar::~VectorCellar() {
+		}
+
+		int VectorCellar::size() {
+			return this->m_barrels.size();
+		}
+	}
 }

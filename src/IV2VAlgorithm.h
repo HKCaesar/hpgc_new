@@ -3,6 +3,8 @@
 
 #include "VectorBarrel.h"
 
+using namespace hpgc::data;
+
 namespace hpgc {
 	namespace algorithm {
 		class IV2VAlgorithm {

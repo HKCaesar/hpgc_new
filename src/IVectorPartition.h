@@ -6,6 +6,9 @@
 
 namespace hpgc {
 	namespace partition {
+
+		using namespace hpgc::data;
+
 		class IVectorPartition {
 		public:
 			virtual VectorCellar * Partition(VectorMetaData * meta) = 0;

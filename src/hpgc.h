@@ -9,6 +9,7 @@
 namespace hpgc {
 
 	using namespace std;
+	using namespace data;
 
     void Init(int argc, char ** argv);
 
