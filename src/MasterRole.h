@@ -20,7 +20,7 @@ class MasterRole : public IRole {
 public:
     virtual int Action();
     MasterRole(data::VectorCellar * cellar);
-    ~MasterRole();
+    virtual ~MasterRole();
 
 private:
     bool m_masterRunning;

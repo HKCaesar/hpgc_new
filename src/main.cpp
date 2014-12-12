@@ -8,11 +8,12 @@
 #include "rpc.h"
 #include "hpgc.h"
 
+#include <iostream>
 #include <geoalgorithm.format.h>
 
 using namespace hpgc;
 
-int main(int argc, char ** argv)
+int mainTest(int argc, char ** argv)
 {
     Init(argc, argv);
     const char * pszSrcFile = "/home/huangtao/hpgc_new/test";
@@ -83,4 +84,11 @@ int main(int argc, char ** argv)
             metadata);
     alg->Run();
     return 0;
+}
+
+int main(int argc, char ** argv){
+	Init(argc,argv);
+	auto net = rpc::RPCNetwork::Get();
+	std::cout << net->Id() << std::endl;
+	return 0;
 }

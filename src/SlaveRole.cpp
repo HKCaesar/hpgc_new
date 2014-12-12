@@ -9,6 +9,7 @@
 
 namespace hpgc {
 namespace role {
+
 int SlaveRole::Action()
 {
     DataMessage dRequest;

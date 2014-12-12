@@ -18,7 +18,7 @@ void M2sScheduler::Work(task::GeoTask task,
     if (net->Id() == 0) {
         auto meta = hpgcAlg->GetMetaData();
         auto partition = hpgcAlg->GetPartition();
-        data::VectorCellar * srcCellar = partition->Partition(meta);
+        auto srcCellar = partition->Partition(meta);
         role::MasterRole node = { srcCellar };
         node.Action();
     }
