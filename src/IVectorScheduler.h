@@ -6,7 +6,7 @@
 #include "IV2VAlgorithm.h"
 #include "VectorCellar.h"
 #include "HpgcVectorAlgorithm.h"
-#include "common.h"
+#include "hpgc.h"
 
 #include <list>
 

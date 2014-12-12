@@ -4,7 +4,7 @@
 #include "IRole.h"
 #include "IVectorScheduler.h"
 #include "rpc.h"
-#include "common.h"
+#include "hpgc.h"
 
 #include <queue>
 #include <map>
@@ -24,7 +24,7 @@ namespace hpgc {
         bool m_masterRunning;
         std::queue<int> m_activeSlaves;
         std::vector<Record > m_statistics;
-        RPCNetwork * m_net;
+        rpc::RPCNetwork * m_net;
     };
 }
 #endif // MasterRole_h__

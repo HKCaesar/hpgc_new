@@ -4,22 +4,22 @@
 #include "vector.metadata.h"
 #include "M2sScheduler.h"
 #include "port.debug.h"
-#include "common.h"
-#include "rpc.h"
 #include "timer.h"
+#include "rpc.h"
+#include "hpgc.h"
 
 #include <geoalgorithm.format.h>
 
 using namespace hpgc;
 
 int main(int argc, char ** argv) {
-    HPGCInit(argc, argv);
+    Init(argc, argv);
     const char * pszSrcFile = "/home/huangtao/hpgc_new/test";
     const char * pszDstFile = "PG:dbname=postgis host=localhost port=5432 user=postgres password=postgres";
     const char * pszSrcLayer = "test";
     const char * pszDstLayer = "test";
 
-	auto net = RPCNetwork::Get();
+	auto net = rpc::RPCNetwork::Get();
     char ** pszlist = NULL;
     pszlist = CSLAddString(pszlist,"OVERWRITE=YES");
     auto srs = (OGRSpatialReference *)OSRNewSpatialReference(NULL);
@@ -105,7 +105,7 @@ int main(int argc, char ** argv) {
     auto scheduler = new M2sScheduler();
     auto vct = new V2vProj(argc, argv);
 
-	GeoTask task = std::bind(&V2vProj::Compute, vct, _1);
+	GeoTask task = std::bind(&V2vProj::Compute, vct, rpc::_1);
 
     auto alg = new HpgcVectorAlgorithm(task, scheduler, partition, metadata);
     alg->Run();

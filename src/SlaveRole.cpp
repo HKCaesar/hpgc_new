@@ -1,7 +1,7 @@
 #include "SlaveRole.h"
 #include "port.debug.h"
 #include "timer.h"
-#include "common.h"
+#include "hpgc.h"
 #include "ScopeGuard.h"
 #include "port.debug.h"
 
@@ -40,7 +40,7 @@ namespace hpgc {
 
     SlaveRole::SlaveRole(GeoTask task) {
         m_alg = task;
-        m_net = RPCNetwork::Get();
+        m_net = rpc::RPCNetwork::Get();
         m_workRunning = true;
         m_taskRunning = false;
         RegisterCallback(WORKER_FINALIZE, new EmptyMessage(),
@@ -56,7 +56,7 @@ namespace hpgc {
     }
 
     void SlaveRole::HandleGameOver(const EmptyMessage & req, EmptyMessage * resp,
-                                   const RPCInfo & rpc) {
+                                   const rpc::RPCInfo & rpc) {
         while (m_taskRunning) {
             Sleep(FLAGS_sleep_time);
         }

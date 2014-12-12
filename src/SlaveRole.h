@@ -19,10 +19,10 @@ namespace hpgc {
         bool m_workRunning;
         bool m_taskRunning;
         GeoTask m_alg;
-        RPCNetwork * m_net;
+        rpc::RPCNetwork * m_net;
 
         void HandleGameOver(const EmptyMessage & req, EmptyMessage * resp ,
-                            const RPCInfo & rpc );
+                            const rpc::RPCInfo & rpc );
     };
 }
 #endif // SlaveRole_h__

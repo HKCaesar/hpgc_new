@@ -2,7 +2,7 @@
 #include "port.debug.h"
 #include "ScopeGuard.h"
 #include "rpc.message.pb.h"
-#include "common.h"
+#include "hpgc.h"
 
 #include <geoalgorithm.format.h>
 
@@ -112,7 +112,7 @@ namespace hpgc {
 
     MasterRole::MasterRole(VectorCellar * cellar) {
         m_masterRunning = true;
-        m_net = RPCNetwork::Get();
+        m_net = rpc::RPCNetwork::Get();
         for (int i = 0; i < cellar->size(); ++i) {
             m_task[Taskid(i)] = new TaskState(Taskid(i), cellar->GetByIndex(i));
         }
@@ -120,7 +120,7 @@ namespace hpgc {
         for (int i = 0; i < m_net->Size()-1; ++i) {
             RegisterWorkerRequest req;
             int src = 0;
-            m_net->Read(hpgc::ANY_SOURCE, REGISTER_WORKER, &req , &src);
+            m_net->Read(rpc::ANY_SOURCE, REGISTER_WORKER, &req , &src);
             m_activeSlaves.push(src);
         }
     }

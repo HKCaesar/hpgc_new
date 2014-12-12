@@ -10,8 +10,7 @@ namespace hpgc {
 
 	using namespace std;
 
-    void HPGCInit(int argc, char ** argv);
-	void Sleep(double t);
+    void Init(int argc, char ** argv);
 
     struct Record {
         string start_time;

@@ -1,10 +1,10 @@
-#include "common.h"
+#include "hpgc.h"
 #include "rpc.h"
 #include "port.debug.h"
 
 namespace hpgc {
-    void HPGCInit(int argc, char ** argv) {
-        RPCNetwork::Init();
+    void Init(int argc, char ** argv) {
+        rpc::RPCNetwork::Init();
     }
 
     VectorBarral * BarralFromDataMessage(DataMessage * msg) {

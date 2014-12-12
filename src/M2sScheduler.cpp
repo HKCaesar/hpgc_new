@@ -11,7 +11,7 @@
 void hpgc::M2sScheduler::Work(GeoTask task,
                               HpgcVectorAlgorithm * hpgcAlg) {
 
-    auto net = RPCNetwork::Get();
+	auto net = rpc::RPCNetwork::Get();
     if ( net->Id() == 0) {
         auto meta = hpgcAlg->GetMetaData();
         auto partition = hpgcAlg->GetPartition();
