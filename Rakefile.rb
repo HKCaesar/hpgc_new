@@ -6,7 +6,7 @@ desc "test"
 task :test do
     num = (ENV['n'] ? ENV['n'] : '3').to_i
     mpiexec = "/opt/gcc49/openmpi/bin/mpiexec -n #{num} --allow-run-as-root"
-    sh "#{mpiexec} ./build/bin/hpgc.exe "
+    sh "#{mpiexec} ./build/bin/hpgc "
 end
 
 desc "Beautiful code"
