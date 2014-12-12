@@ -41,7 +41,7 @@ int main(int argc, char ** argv) {
 
     auto metadata = new VectorMetaData(pszSrcFile, pszSrcLayer, pszDstFile,pszDstLayer);
 
-    auto partition = new EfcPartition(2);
+    auto partition = new partition::EfcPartition(2);
 
     auto celler = partition->Partition(metadata);
 
@@ -103,9 +103,9 @@ int main(int argc, char ** argv) {
     }
 
     auto scheduler = new scheduler::M2sScheduler();
-    auto vct = new V2vProj(argc, argv);
+    auto vct = new algorithm::V2vProj(argc, argv);
 
-	GeoTask task = std::bind(&V2vProj::Compute, vct, rpc::_1);
+	GeoTask task = std::bind(&algorithm::V2vProj::Compute, vct, rpc::_1);
 
     auto alg = new algorithm::HpgcVectorAlgorithm(task, scheduler, partition, metadata);
     alg->Run();

@@ -8,7 +8,7 @@ namespace hpgc {
 	namespace algorithm {
 
 		HpgcVectorAlgorithm::HpgcVectorAlgorithm(GeoTask alg,
-			scheduler::IVectorScheduler * she, IVectorPartition * par, VectorMetaData * meta) {
+			scheduler::IVectorScheduler * she, partition::IVectorPartition * par, VectorMetaData * meta) {
 			m_algorithm = alg;
 			m_partition = par;
 			m_scheduler = she;
@@ -19,7 +19,7 @@ namespace hpgc {
 			m_scheduler->Work(m_algorithm, this);
 		}
 
-		IVectorPartition * HpgcVectorAlgorithm::GetPartition() {
+		partition::IVectorPartition * HpgcVectorAlgorithm::GetPartition() {
 			return m_partition;
 		}
 

@@ -20,17 +20,17 @@ namespace hpgc {
 
 		public:
 			HpgcVectorAlgorithm(GeoTask alg, scheduler::IVectorScheduler * she,
-				IVectorPartition * par, VectorMetaData * data);
+				partition::IVectorPartition * par, VectorMetaData * data);
 			void Run();
 
-			IVectorPartition * GetPartition();
+			partition::IVectorPartition * GetPartition();
 			scheduler::IVectorScheduler * GetScheduler();
 			VectorMetaData  *  GetMetaData();
 			GeoTask  GetAlgorithm();
 
 		private:
 			GeoTask  m_algorithm;
-			IVectorPartition * m_partition;
+			partition::IVectorPartition * m_partition;
 			scheduler::IVectorScheduler * m_scheduler;
 			VectorMetaData * m_metaData;
 		};

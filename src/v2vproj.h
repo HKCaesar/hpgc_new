@@ -5,15 +5,17 @@
 #include <geoalgorithm.format.h>
 
 namespace hpgc {
-    class V2vProj : public IV2VAlgorithm {
-    public:
-        virtual bool Compute(const VectorBarral * barrel);
-        V2vProj(int argc, char ** argv);
+	namespace algorithm {
+		class V2vProj : public IV2VAlgorithm {
+		public:
+			virtual bool Compute(const VectorBarral * barrel);
+			V2vProj(int argc, char ** argv);
 
-    private:
-        const char * m_srs ;
-        OGRSpatialReference * m_ogrSr;
-    };
+		private:
+			const char * m_srs;
+			OGRSpatialReference * m_ogrSr;
+		};
+	}
 }
 
 
