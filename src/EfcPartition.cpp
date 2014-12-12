@@ -17,7 +17,7 @@ VectorCellar * EfcPartition::Partition(VectorMetaData * meta)
     std::list<int> srcFeatures;
     auto cellar = new VectorCellar();
     int count = 0;
-    // because push_back last feaure
+    // because push_back last feature
     int efc_index = m_efc - 1;
     OGRFeature * current = NULL;
     int id = 0;
