@@ -27,6 +27,5 @@ namespace hpgc{
 			return m_id;
 		}
 
-
 	}
 }
