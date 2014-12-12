@@ -2,6 +2,7 @@
 #define RPC_h__
 
 #include "VectorBarrel.h"
+#include "timer.h"
 
 #include <google/protobuf/message.h>
 #include <functional>
@@ -41,13 +42,13 @@ namespace hpgc {
         std::string payload;
         MPI::Request mpi_req;
         MPI::Status status;
-        double start_time;
+        TimePoint start_time;
 
         RPCRequest(int target, int method, const Message & msg, Header h = Header());
         ~RPCRequest();
 
         bool Finished();
-        double Elapsed();
+        long Elapsed();
     };
 
     typedef std::function<void(const RPCInfo & rpc)> Callback;

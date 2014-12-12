@@ -9,7 +9,6 @@
 #include "timer.h"
 
 #include <geoalgorithm.format.h>
-#include <glog/logging.h>
 
 using namespace hpgc;
 

@@ -25,8 +25,8 @@ message RegisterWorkerRequest{
 message TaskMessage{
     required TaskType Type = 1;
     required int32 DataIndex = 2;
-    required double StartTime = 3;
-    required double EndTime = 4;
+    required string StartTime = 3;
+    required string EndTime = 4;
 }
 
 message DataMessage{

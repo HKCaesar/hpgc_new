@@ -304,19 +304,29 @@ class TaskMessage : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 dataindex() const;
   inline void set_dataindex(::google::protobuf::int32 value);
 
-  // required double StartTime = 3;
+  // required string StartTime = 3;
   inline bool has_starttime() const;
   inline void clear_starttime();
   static const int kStartTimeFieldNumber = 3;
-  inline double starttime() const;
-  inline void set_starttime(double value);
+  inline const ::std::string& starttime() const;
+  inline void set_starttime(const ::std::string& value);
+  inline void set_starttime(const char* value);
+  inline void set_starttime(const char* value, size_t size);
+  inline ::std::string* mutable_starttime();
+  inline ::std::string* release_starttime();
+  inline void set_allocated_starttime(::std::string* starttime);
 
-  // required double EndTime = 4;
+  // required string EndTime = 4;
   inline bool has_endtime() const;
   inline void clear_endtime();
   static const int kEndTimeFieldNumber = 4;
-  inline double endtime() const;
-  inline void set_endtime(double value);
+  inline const ::std::string& endtime() const;
+  inline void set_endtime(const ::std::string& value);
+  inline void set_endtime(const char* value);
+  inline void set_endtime(const char* value, size_t size);
+  inline ::std::string* mutable_endtime();
+  inline ::std::string* release_endtime();
+  inline void set_allocated_endtime(::std::string* endtime);
 
   // @@protoc_insertion_point(class_scope:hpgc.TaskMessage)
  private:
@@ -333,8 +343,8 @@ class TaskMessage : public ::google::protobuf::Message {
 
   int type_;
   ::google::protobuf::int32 dataindex_;
-  double starttime_;
-  double endtime_;
+  ::std::string* starttime_;
+  ::std::string* endtime_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
@@ -583,7 +593,7 @@ inline void TaskMessage::set_dataindex(::google::protobuf::int32 value) {
   dataindex_ = value;
 }
 
-// required double StartTime = 3;
+// required string StartTime = 3;
 inline bool TaskMessage::has_starttime() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -594,18 +604,66 @@ inline void TaskMessage::clear_has_starttime() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void TaskMessage::clear_starttime() {
-  starttime_ = 0;
+  if (starttime_ != &::google::protobuf::internal::kEmptyString) {
+    starttime_->clear();
+  }
   clear_has_starttime();
 }
-inline double TaskMessage::starttime() const {
+inline const ::std::string& TaskMessage::starttime() const {
+  return *starttime_;
+}
+inline void TaskMessage::set_starttime(const ::std::string& value) {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  starttime_->assign(value);
+}
+inline void TaskMessage::set_starttime(const char* value) {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  starttime_->assign(value);
+}
+inline void TaskMessage::set_starttime(const char* value, size_t size) {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  starttime_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TaskMessage::mutable_starttime() {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
   return starttime_;
 }
-inline void TaskMessage::set_starttime(double value) {
-  set_has_starttime();
-  starttime_ = value;
+inline ::std::string* TaskMessage::release_starttime() {
+  clear_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = starttime_;
+    starttime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TaskMessage::set_allocated_starttime(::std::string* starttime) {
+  if (starttime_ != &::google::protobuf::internal::kEmptyString) {
+    delete starttime_;
+  }
+  if (starttime) {
+    set_has_starttime();
+    starttime_ = starttime;
+  } else {
+    clear_has_starttime();
+    starttime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
 }
 
-// required double EndTime = 4;
+// required string EndTime = 4;
 inline bool TaskMessage::has_endtime() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
@@ -616,15 +674,63 @@ inline void TaskMessage::clear_has_endtime() {
   _has_bits_[0] &= ~0x00000008u;
 }
 inline void TaskMessage::clear_endtime() {
-  endtime_ = 0;
+  if (endtime_ != &::google::protobuf::internal::kEmptyString) {
+    endtime_->clear();
+  }
   clear_has_endtime();
 }
-inline double TaskMessage::endtime() const {
+inline const ::std::string& TaskMessage::endtime() const {
+  return *endtime_;
+}
+inline void TaskMessage::set_endtime(const ::std::string& value) {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  endtime_->assign(value);
+}
+inline void TaskMessage::set_endtime(const char* value) {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  endtime_->assign(value);
+}
+inline void TaskMessage::set_endtime(const char* value, size_t size) {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  endtime_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TaskMessage::mutable_endtime() {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
   return endtime_;
 }
-inline void TaskMessage::set_endtime(double value) {
-  set_has_endtime();
-  endtime_ = value;
+inline ::std::string* TaskMessage::release_endtime() {
+  clear_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = endtime_;
+    endtime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TaskMessage::set_allocated_endtime(::std::string* endtime) {
+  if (endtime_ != &::google::protobuf::internal::kEmptyString) {
+    delete endtime_;
+  }
+  if (endtime) {
+    set_has_endtime();
+    endtime_ = endtime;
+  } else {
+    clear_has_endtime();
+    endtime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
 }
 
 // -------------------------------------------------------------------

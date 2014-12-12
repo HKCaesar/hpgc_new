@@ -22,7 +22,7 @@ namespace hpgc {
             TaskMessage kRequest;
             VectorBarral * barrel = BarralFromDataMessage(&dRequest);
             ON_SCOPE_EXIT([&]() {delete barrel; });
-            kRequest.set_starttime(Now());
+			kRequest.set_starttime(TimePoint2String(Now()));
             kRequest.set_dataindex(barrel->Id());
             if (m_alg(barrel)) {
                 kRequest.set_type(TASK_OK);
@@ -30,7 +30,7 @@ namespace hpgc {
             else {
                 kRequest.set_type(TASK_WRONG);
             }
-            kRequest.set_endtime(Now());
+			kRequest.set_endtime(TimePoint2String(Now()));
             m_taskRunning = false;
             m_net->Send(0, WORKER_TASK_DONE, kRequest);
         }

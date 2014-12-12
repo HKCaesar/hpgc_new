@@ -19,54 +19,54 @@
 #include <gdal_pam.h>
 #include <vrtdataset.h>
 
-///×¢²áËùÓĞµÄ¸ñÊ½£¬Çı¶¯°üÀ¨Ê¸Á¿ºÍÕ¤¸ñ
+///æ³¨å†Œæ‰€æœ‰çš„æ ¼å¼ï¼Œé©±åŠ¨åŒ…æ‹¬çŸ¢é‡å’Œæ …æ ¼
 void RegisterAll();
 
 void RegisterVector();
 
 void RegisterRaster();
 
-///»ñµÃÊ¸Á¿Êı¾İÇı¶¯
+///è·å¾—çŸ¢é‡æ•°æ®é©±åŠ¨
 OGRSFDriver * GetVectorDriver(const char * pszFormat);
 
-///»ñµÃÕ¤¸ñÊı¾İÇı¶¯
+///è·å¾—æ …æ ¼æ•°æ®é©±åŠ¨
 GDALDriver * GetRasterDriver(const char * pszFormat );
 
-///´ò¿ªÊ¸Á¿Êı¾İ¼¯
+///æ‰“å¼€çŸ¢é‡æ•°æ®é›†
 OGRDataSource * VectorOpen(const char * pszFilename,
                            GDALAccess eAccess);
 
-///´ò¿ªÕ¤¸ñÊı¾İ¼¯
+///æ‰“å¼€æ …æ ¼æ•°æ®é›†
 GDALDataset * RasterOpen(const char * pszFilename,
                          GDALAccess eAccess);
 
-///´´½¨Ê¸Á¿Êı¾İ¼¯
+///åˆ›å»ºçŸ¢é‡æ•°æ®é›†
 OGRDataSource * VectorCreate(const char * pszFormat,
                              const char * pszFilename,
                              char ** papszOptions = NULL);
 
-///´´½¨Õ¤¸ñÊı¾İ¼¯
+///åˆ›å»ºæ …æ ¼æ•°æ®é›†
 GDALDataset * RasterCreate(const char * pszFormat,
                            const char * pszFilename,
                            char ** papszOptions = NULL);
 
-///´´½¨Õ¤¸ñÊı¾İ¼¯ÔªÊı¾İ
+///åˆ›å»ºæ …æ ¼æ•°æ®é›†å…ƒæ•°æ®
 char ** SetCreateMetaData(int xsize, int ysize,
                           int band, GDALDataType eDataType);
 
-///¹Ø±ÕÊ¸Á¿Êı¾İ¼¯
+///å…³é—­çŸ¢é‡æ•°æ®é›†
 void VectorClose(OGRDataSource * poDS);
 
-///¹Ø±ÕÕ¤¸ñÊı¾İ¼¯
+///å…³é—­æ …æ ¼æ•°æ®é›†
 void RasterClose(GDALDataset * poDS);
 
-///Çå³ıÊ¸Á¿Êı¾İĞÅÏ¢
+///æ¸…é™¤çŸ¢é‡æ•°æ®ä¿¡æ¯
 void VectorClean();
 
-///Çå³ıÕ¤¸ñÊı¾İĞÅÏ¢
+///æ¸…é™¤æ …æ ¼æ•°æ®ä¿¡æ¯
 void RasterClean();
 
-///¸´ÖÆÒ»¸öÍ¼²ãµÄÊôĞÔĞÅÏ¢
+///å¤åˆ¶ä¸€ä¸ªå›¾å±‚çš„å±æ€§ä¿¡æ¯
 void CopyLayerDefine(OGRLayer * source, OGRLayer * target);
 
 #endif

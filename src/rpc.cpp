@@ -29,8 +29,8 @@ namespace hpgc {
         return mpi_req.Test(status);
     }
 
-    double RPCRequest::Elapsed() {
-        return Now() - start_time;
+    long RPCRequest::Elapsed() {
+		return DurationTime(start_time, Now());
     }
 
     RPCRequest::~RPCRequest() {}

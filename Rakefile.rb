@@ -1,28 +1,49 @@
-dir_lib = 'd:/projects/hpgc_prj/hpgc/Debug'
-dir_include = './src'
-pub_dir = "c:/hpgc_runtime"
-test_dir = "d:/projects/hpgc/test"
-
-include_file = FileList.new("#{dir_include}/mpiobject/*.h","#{dir_include}/geoformat/*.h")
-lib_file = FileList.new("#{dir_lib}/mpiobject.lib","#{dir_lib}/geoformat.lib")
-pub_file= FileList.new("#{pub_dir}/include/*.h","#{pub_dir}/lib")
-
-desc "publish"
-task :publish do 
-    rm_f pub_file
-    cp include_file,"#{pub_dir}/include"
-    cp lib_file,"#{pub_dir}/lib"
+desc "install hpgc"
+task :install do 
 end
 
 desc "test"
 task :test do
     num = (ENV['n'] ? ENV['n'] : '3').to_i
-    sh "mpiexec -n #{num} #{dir_lib}/hpgc.exe -s #{test_dir} -d d:/test"
+    mpiexec = "/opt/gcc49/openmpi/bin/mpiexec -n #{num} --allow-run-as-root"
+    sh "#{mpiexec} ./build/bin/debug/hpgc.exe "
 end
 
 desc "Beautiful code"
 task :format do
     sh 'astyle --options=hpgc_astyle --recursive src/*.cpp src/*.h'
 end
+
+desc 'generate protobuf file'
+task :generate do
+    cp_r 'src/rpc.message.proto','.'
+
+    sh './tool/protoc --cpp_out=. rpc.message.proto'
+
+    mv 'rpc.message.pb.h' ,'src/rpc.message.pb.h' 
+    mv 'rpc.message.pb.cc','src/rpc.message.pb.cpp' 
+
+    rm_rf 'rpc.message.proto'
+end
+
+desc "build source"
+task :build do
+    makedirs "build"
+    cd "build"
+    sh "cmake .."
+    sh 'make'
+    cd ".."
+end
+
+desc "clean file"
+task :clean do
+    rm_rf 'build'
+end
+
+desc "update file"
+task :update do
+    sh "git pull"
+end
+
 
 task :default => :test 

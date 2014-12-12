@@ -4,14 +4,18 @@
 #include "rpc.message.pb.h"
 #include "VectorBarrel.h"
 #include <functional>
+#include <string>
 
 namespace hpgc {
+
+	using namespace std;
+
     void HPGCInit(int argc, char ** argv);
 	void Sleep(double t);
 
     struct Record {
-        double start_time;
-        double end_time;
+        string start_time;
+        string end_time;
         int slave;
         int id;
 

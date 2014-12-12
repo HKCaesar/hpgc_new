@@ -2,15 +2,9 @@
 #include "rpc.h"
 #include "port.debug.h"
 
-#include <asm/msr.h>
-#include <sys/time.h>
-#include <glog/logging.h>
-
 namespace hpgc {
     void HPGCInit(int argc, char ** argv) {
         RPCNetwork::Init();
-		google::InitGoogleLogging(argv[0]);
-		FLAGS_log_dir = "./log";
     }
 
     VectorBarral * BarralFromDataMessage(DataMessage * msg) {
@@ -49,12 +43,6 @@ namespace hpgc {
         return record;
     }
 
-	void Sleep(double t) {
-		timespec req;
-		req.tv_sec = (int)t;
-		req.tv_nsec = (int64_t)(1e9 * (t - (int64_t)t));
-		nanosleep(&req, NULL);
-	}
 
 }
 

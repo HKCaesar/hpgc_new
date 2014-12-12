@@ -1,73 +1,47 @@
 #ifndef timer_h__
 #define timer_h__
 
+#include <chrono>
+#include <string>
+
 namespace hpgc {
-    static uint64_t rdtsc() {
-        uint32_t hi, lo;
-        __asm__ __volatile__("rdtsc" : "=a"(lo), "=d"(hi));
-        return (((uint64_t)hi) << 32) | ((uint64_t)lo);
-    }
+	typedef std::chrono::high_resolution_clock Clock;
+	typedef std::chrono::system_clock::time_point TimePoint;
+	using namespace std::chrono;
 
-    inline double Now() {
-        timespec tp;
-        clock_gettime(CLOCK_MONOTONIC, &tp);
-        return tp.tv_sec + 1e-9 * tp.tv_nsec;
-    }
+	void Sleep(int t);
 
-    class Timer {
-    public:
-        Timer() {
-            Reset();
-        }
+	std::string TimePoint2String(TimePoint tp);
 
-        void Reset() {
-            start_time_ = Now();
-            start_cycle_ = rdtsc();
-        }
+	long DurationTime(TimePoint from, TimePoint to);
 
-        double elapsed() const {
-            return Now() - start_time_;
-        }
+	inline TimePoint Now()
+	{
+		auto now = Clock::now();
+		return now;
+	}
 
-        uint64_t cycles_elapsed() const {
-            return rdtsc() - start_cycle_;
-        }
+	class Timer {
+	public:
+		Timer() {
+			Reset();
+		}
 
-        // Rate at which an event occurs.
-        double rate(int count) {
-            return count / (Now() - start_time_);
-        }
+		void Reset() {
+			start_time_ = Now();
+		}
 
-        double cycle_rate(int count) {
-            return double(cycles_elapsed()) / count;
-        }
+		long elapsed() const {
+			return DurationTime(start_time_, Now());
+		}
 
-    private:
-        double start_time_;
-        uint64_t start_cycle_;
-    };
+		std::string To_String();
 
+	private:
+		TimePoint start_time_;
+	};
 }
 
-#define EVERY_N(interval, operation)\
-    { static int COUNT = 0;\
-        if (COUNT++ % interval == 0) {\
-            operation;\
-        }\
-    }
-
-#define PERIODIC(interval, operation)\
-    { static int64_t last = 0;\
-        static int64_t cycles = (int64_t)(interval * get_processor_frequency());\
-        static int COUNT = 0; \
-        ++COUNT; \
-        int64_t now = rdtsc(); \
-        if (now - last > cycles) {\
-            last = now;\
-            operation;\
-            COUNT = 0;\
-        }\
-    }
 
 
 

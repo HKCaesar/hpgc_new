@@ -26,8 +26,8 @@ OGRDataSource * VectorCreate( const char * pszFormat, const char * pszFilename,
     OGRDataSource * poOGRDataSource =
         poDriver->CreateDataSource(pszFilename, papszOptions);
 #ifdef TRACEON
-    //²âÊÔÊ±Ê¹ÓÃÎÄ¼þÐÍÊý¾Ý¿â£¬Ã»ÓÐÍ¼²ãÊ±´ò¿ªÓÐÎÊÌâ£¬Òò´ËÔÚÕâÀï·ÅÒ»¸öÍ¼²ã
-    //ÕâÑù²ÅÄÜ´ò¿ª,²»ÓÃ²âÊÔ¿ÉÒÔ¹Ø±Õ£¬ÔÚreleaseÖÐÃ»ÓÐ
+    //æµ‹è¯•æ—¶ä½¿ç”¨æ–‡ä»¶åž‹æ•°æ®åº“ï¼Œæ²¡æœ‰å›¾å±‚æ—¶æ‰“å¼€æœ‰é—®é¢˜ï¼Œå› æ­¤åœ¨è¿™é‡Œæ”¾ä¸€ä¸ªå›¾å±‚
+    //è¿™æ ·æ‰èƒ½æ‰“å¼€,ä¸ç”¨æµ‹è¯•å¯ä»¥å…³é—­ï¼Œåœ¨releaseä¸­æ²¡æœ‰
     poOGRDataSource->CreateLayer("TEMP", NULL, wkbUnknown, NULL);
 #endif
     return poOGRDataSource;
