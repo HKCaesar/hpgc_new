@@ -22,7 +22,7 @@ namespace hpgc {
 
 		class IVectorScheduler {
 		public:
-			virtual void Work(task::GeoTask task, algorithm::HpgcVectorAlgorithm * hpgcAlg) = 0;
+			virtual void Work(task::GeoTask tk, algorithm::HpgcVectorAlgorithm * hpgcAlg) = 0;
 		};
 	}
 }

@@ -14,7 +14,7 @@ namespace hpgc {
 		class SlaveRole : public IRole {
 		public:
 			virtual int Action();
-			SlaveRole(task::GeoTask task);
+			SlaveRole(task::GeoTask tk);
 			~SlaveRole();
 			int Id();
 		private:

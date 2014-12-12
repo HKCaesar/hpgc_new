@@ -11,7 +11,7 @@ namespace hpgc {
 
 		class M2sScheduler : public IVectorScheduler {
 		public:
-			virtual void Work(task::GeoTask task, algorithm::HpgcVectorAlgorithm * hpgcAlg);
+			virtual void Work(task::GeoTask tk, algorithm::HpgcVectorAlgorithm * hpgcAlg);
 		};
 
 	}
