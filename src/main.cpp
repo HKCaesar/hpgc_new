@@ -139,6 +139,38 @@ namespace hpgc {
 
 		};
 
+		class MacroAlgorithm :public algorithm::VectorAlgorithm 
+		{
+		public:
+			MacroAlgorithm();
+			~MacroAlgorithm();
+			void Run();
+			void Add(algorithm::VectorAlgorithm * alg);
+
+
+		private:
+			std::list<algorithm::VectorAlgorithm *> m_algs;
+
+		};
+
+		MacroAlgorithm::MacroAlgorithm() :VectorAlgorithm(nullptr,nullptr,nullptr,nullptr)
+		{
+		}
+
+		MacroAlgorithm::~MacroAlgorithm()
+		{
+		}
+
+		void MacroAlgorithm::Run()
+		{
+			std::for_each(begin(m_algs), end(m_algs), [](VectorAlgorithm * i){i->Run(); });
+		}
+
+		void MacroAlgorithm::Add(algorithm::VectorAlgorithm * alg)
+		{
+			m_algs.push_back(alg);
+		}
+
     }
 }
 
