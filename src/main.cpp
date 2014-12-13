@@ -89,40 +89,40 @@ int mainTest(int argc, char ** argv)
 }
 
 namespace hpgc {
-	namespace simple {
-		class SimpleMaster : public role::MasterRole
-		{
-		public:
-		protected:
-		private:
-		};
+    namespace simple {
+        class SimpleMaster : public role::MasterRole
+        {
+        public:
+        protected:
+        private:
+        };
 
-		class SimpleSlave : public role::SlaveRole
-		{
+        class SimpleSlave : public role::SlaveRole
+        {
 
-		};
+        };
 
-		class SimplePartition : public partition::IVectorPartition
-		{
+        class SimplePartition : public partition::IVectorPartition
+        {
 
-		};
+        };
 
-	}
+    }
 }
 
 
 int main(int argc, char ** argv){
-	Init(argc,argv);
-	auto net = rpc::RPCNetwork::Get();
-	std::cout << net->Id() << std::endl;
+    Init(argc,argv);
+    auto net = rpc::RPCNetwork::Get();
+    std::cout << net->Id() << std::endl;
 
-	if (net->Id() == 1)
-	{
-		std::cout << "node 1" << std::endl;
-	}
-	else
-	{
-		std::cout << "node other" << std::endl;
-	}
-	return 0;
+    if (net->Id() == 1)
+    {
+        std::cout << "node 1" << std::endl;
+    }
+    else
+    {
+        std::cout << "node other" << std::endl;
+    }
+    return 0;
 }

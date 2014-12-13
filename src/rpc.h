@@ -21,8 +21,8 @@ namespace rpc {
 
 typedef google::protobuf::Message Message;
 
-extern int ANY_SOURCE;
-extern int ANY_TAG;
+const int ANY_SOURCE = MPI::ANY_SOURCE;
+const int ANY_TAG = MPI::ANY_TAG;
 
 struct RPCInfo {
     int target;

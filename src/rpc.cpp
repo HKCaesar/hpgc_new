@@ -15,9 +15,6 @@
 namespace hpgc {
 namespace rpc {
 
-int ANY_SOURCE = MPI::ANY_SOURCE;
-int ANY_TAG = MPI::ANY_TAG;
-
 RPCRequest::RPCRequest(int target, int method, const Message & msg, Header h)
 {
     failures = 0;

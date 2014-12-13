@@ -23,6 +23,8 @@ public:
     MetaData * GetSrcMetaData();
     MetaData * GetDstMetaData();
     ~VectorMetaData();
+
+	static VectorMetaData * Empty();
 private:
     MetaData * m_src;
     MetaData * m_dst;

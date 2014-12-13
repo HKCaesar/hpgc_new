@@ -26,6 +26,11 @@ MetaData * VectorMetaData::GetDstMetaData()
     return m_dst;
 }
 
+VectorMetaData * VectorMetaData::Empty()
+{
+	return new VectorMetaData(nullptr, nullptr, nullptr, nullptr);
+}
+
 const char * MetaData::GetDataSourceName()
 {
     return m_dataSource;
