@@ -5,41 +5,44 @@
 #include <string>
 
 namespace hpgc {
-typedef std::chrono::high_resolution_clock Clock;
-typedef std::chrono::system_clock::time_point TimePoint;
-using namespace std::chrono;
+	namespace timer {
 
-void Sleep(int t);
+		typedef std::chrono::high_resolution_clock Clock;
+		typedef std::chrono::system_clock::time_point TimePoint;
+		using namespace std::chrono;
 
-std::string TimePoint2String(TimePoint tp);
+		void Sleep(int t);
 
-long DurationTime(TimePoint from, TimePoint to);
+		std::string TimePoint2String(TimePoint tp);
 
-inline TimePoint Now()
-{
-    auto now = Clock::now();
-    return now;
-}
+		long DurationTime(TimePoint from, TimePoint to);
 
-class Timer {
-public:
-    Timer() {
-        Reset();
-    }
+		inline TimePoint Now()
+		{
+			auto now = Clock::now();
+			return now;
+		}
 
-    void Reset() {
-        start_time_ = Now();
-    }
+		class Timer {
+		public:
+			Timer() {
+				Reset();
+			}
 
-    long elapsed() const {
-        return DurationTime(start_time_, Now());
-    }
+			void Reset() {
+				start_time_ = Now();
+			}
 
-    std::string To_String();
+			long elapsed() const {
+				return DurationTime(start_time_, Now());
+			}
 
-private:
-    TimePoint start_time_;
-};
+			std::string To_String();
+
+		private:
+			TimePoint start_time_;
+		};
+	}
 }
 
 

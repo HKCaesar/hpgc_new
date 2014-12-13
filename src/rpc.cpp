@@ -34,7 +34,7 @@ bool RPCRequest::Finished()
 
 long RPCRequest::Elapsed()
 {
-    return DurationTime(start_time, Now());
+    return timer::DurationTime(start_time, timer::Now());
 }
 
 RPCRequest::~RPCRequest() {}
@@ -147,13 +147,13 @@ void RPCNetwork::Run()
             }
         }
         else {
-            Sleep(FLAGS_sleep_time);
+            timer::Sleep(FLAGS_sleep_time);
         }
         while (!m_pending_sends.empty()) {
             std::lock_guard<std::recursive_mutex> sl(m_send_lock);
             RPCRequest * s = m_pending_sends.back();
             m_pending_sends.pop_back();
-            s->start_time = Now();
+            s->start_time = timer::Now();
             s->mpi_req = m_word->Issend(
                              s->payload.data(), s->payload.size(), MPI::BYTE, s->target, s->rpc_type);
             m_active_sends.insert(s);
@@ -199,9 +199,9 @@ bool RPCNetwork::check_reply_queue(int src, int type, Message * data)
 // Blocking read for the given source and message type.
 void RPCNetwork::Read(int desired_src, int type, Message * data, int * source)
 {
-    Timer t;
+    timer::Timer t;
     while (!TryRead(desired_src, type, data, source)) {
-        Sleep(FLAGS_sleep_time);
+        timer::Sleep(FLAGS_sleep_time);
     }
 }
 
@@ -227,9 +227,9 @@ void RPCNetwork::Call(int dst, int method, const Message & msg,
                       Message * reply)
 {
     Send(dst, method, msg);
-    Timer t;
+    timer::Timer t;
     while (!check_reply_queue(dst, method, reply)) {
-        Sleep(FLAGS_sleep_time);
+        timer::Sleep(FLAGS_sleep_time);
     }
 }
 
@@ -259,7 +259,7 @@ void RPCNetwork::Shutdown()
 void RPCNetwork::Flush()
 {
     while (Active()) {
-        Sleep(FLAGS_sleep_time);
+        timer::Sleep(FLAGS_sleep_time);
     }
 }
 
@@ -291,7 +291,7 @@ void RPCNetwork::WaitForSync(int method, int count)
                 pending.erase(i);
             }
         }
-        Sleep(FLAGS_sleep_time);
+        timer::Sleep(FLAGS_sleep_time);
     }
 }
 

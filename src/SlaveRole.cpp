@@ -14,9 +14,9 @@ int SlaveRole::Action()
 {
     DataMessage dRequest;
     while (m_workRunning) {
-        Timer idle;
+        timer::Timer idle;
         while (!m_net->TryRead(0, WORKER_RUN_TASK, &dRequest)) {
-            Sleep(FLAGS_sleep_time);
+            timer::Sleep(FLAGS_sleep_time);
             if (!m_workRunning) {
                 return 0;
             }
@@ -25,7 +25,7 @@ int SlaveRole::Action()
         TaskMessage kRequest;
         data::VectorBarral * barrel = data::BarralFromDataMessage(&dRequest);
         ON_SCOPE_EXIT([&]() {delete barrel; });
-        kRequest.set_starttime(TimePoint2String(Now()));
+        kRequest.set_starttime(timer::TimePoint2String(timer::Now()));
         kRequest.set_dataindex(barrel->Id());
         if (m_alg(barrel)) {
             kRequest.set_type(TASK_OK);
@@ -33,7 +33,7 @@ int SlaveRole::Action()
         else {
             kRequest.set_type(TASK_WRONG);
         }
-        kRequest.set_endtime(TimePoint2String(Now()));
+        kRequest.set_endtime(timer::TimePoint2String(timer::Now()));
         m_taskRunning = false;
         m_net->Send(0, WORKER_TASK_DONE, kRequest);
     }
@@ -62,7 +62,7 @@ void SlaveRole::HandleGameOver(const EmptyMessage & req, EmptyMessage * resp,
                                const rpc::RPCInfo & rpc)
 {
     while (m_taskRunning) {
-        Sleep(FLAGS_sleep_time);
+        timer::Sleep(FLAGS_sleep_time);
     }
     m_taskRunning = false;
     m_workRunning = false;

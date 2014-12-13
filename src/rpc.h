@@ -43,7 +43,7 @@ struct RPCRequest {
     std::string payload;
     MPI::Request mpi_req;
     MPI::Status status;
-    TimePoint start_time;
+    timer::TimePoint start_time;
 
     RPCRequest(int target, int method, const Message & msg, Header h = Header());
     ~RPCRequest();
