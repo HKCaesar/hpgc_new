@@ -39,8 +39,8 @@ int mainTest(int argc, char ** argv)
     }
     auto metadata = new VectorMetaData(pszSrcFile, pszSrcLayer, pszDstFile,
                                        pszDstLayer);
-    auto partition = new partition::EfcPartition(2);
-    auto celler = partition->Partition(metadata);
+    auto pt = new partition::EfcPartition(2);
+    auto celler = pt->Partition(metadata);
     if(net->Id() == 0) {
         auto barrel = celler->GetByIndex(1);
         DataMessage * data = DataMessageFromBarral(barrel);
@@ -82,7 +82,7 @@ int mainTest(int argc, char ** argv)
     auto scheduler = new scheduler::M2sScheduler();
     auto vct = new algorithm::V2vProj(argc, argv);
     task::GeoTask task = std::bind(&algorithm::V2vProj::Compute, vct, rpc::_1);
-    auto alg = new algorithm::VectorAlgorithm(task, scheduler, partition,
+    auto alg = new algorithm::VectorAlgorithm(task, scheduler, pt,
             metadata);
     alg->Run();
     return 0;
