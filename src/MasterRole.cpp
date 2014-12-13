@@ -136,5 +136,6 @@ MasterRole::~MasterRole()
 		m_net->Send(i + 1, MessageType::WORKER_FINALIZE, req);
     }
 }
+
 }
 }
