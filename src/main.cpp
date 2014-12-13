@@ -43,47 +43,46 @@ int mainTest(int argc, char ** argv)
     auto celler = pt->Partition(metadata);
     if(net->Id() == 0) {
         auto barrel = celler->GetByIndex(1);
-        DataMessage * data = DataMessageFromBarral(barrel);
-        std::string str = data->SerializeAsString();
+        DataMessage * dt = DataMessageFromBarral(barrel);
+        std::string str = dt->SerializeAsString();
         DataMessage data1;
         data1.ParseFromString(str);
         auto barreltest = BarralFromDataMessage(&data1);
-        if (barreltest->GetDstDataSource() == data->dstdatasource()) {
+        if (barreltest->GetDstDataSource() == dt->dstdatasource()) {
             BUG("dst ds OK");
         }
         else {
             BUG("!! dst ds WRONG");
         }
-        if (barreltest->GetDstLayer() == data->dstlayer()) {
+        if (barreltest->GetDstLayer() == dt->dstlayer()) {
             BUG("dst layer OK");
         }
         else {
             BUG("!! dst layer WRONG") ;
         }
-        if (barreltest->GetSrcDataSource() == data->srcdatasource()) {
+        if (barreltest->GetSrcDataSource() == dt->srcdatasource()) {
             BUG("src ds OK");
         }
         else {
             BUG("!! src datasource WRONG");
         }
-        if (barreltest->GetSrcLayer() == data->srclayer()) {
+        if (barreltest->GetSrcLayer() == dt->srclayer()) {
             BUG("src layer OK");
         }
         else {
             BUG("!! src layer WRONG");
         }
-        if (barreltest->Id() == data->dataindex()) {
+        if (barreltest->Id() == dt->dataindex()) {
             BUG("id OK");
         }
         else {
             BUG("!!id WRONG");
         }
     }
-    auto scheduler = new scheduler::M2sScheduler();
+    auto sr = new scheduler::M2sScheduler();
     auto vct = new algorithm::V2vProj(argc, argv);
     task::GeoTask task = std::bind(&algorithm::V2vProj::Compute, vct, rpc::_1);
-    auto alg = new algorithm::VectorAlgorithm(task, scheduler, pt,
-            metadata);
+    auto alg = new algorithm::VectorAlgorithm(task, sr, pt, metadata);
     alg->Run();
     return 0;
 }
@@ -92,20 +91,53 @@ namespace hpgc {
     namespace simple {
         class SimpleMaster : public role::MasterRole
         {
-        public:
-        protected:
-        private:
+		public:
+			SimpleMaster(data::VectorCellar * cellar):MasterRole(cellar){}
+			~SimpleMaster()
+			{
+
+			}
+
         };
 
         class SimpleSlave : public role::SlaveRole
         {
+		public:
+			SimpleSlave() :SlaveRole(nullptr){}
+			~SimpleSlave()
+			{
+
+			}
 
         };
 
         class SimplePartition : public partition::IVectorPartition
         {
+		public:
+			SimplePartition(){};
+			data::VectorCellar * Partition(data::VectorMetaData * meta){
+				return nullptr;
+			};
 
         };
+
+		class SimpleAlgorithm : public algorithm::VectorAlgorithm{
+		public:
+			SimpleAlgorithm(scheduler::IVectorScheduler * sr
+				, partition::IVectorPartition * pt
+				, data::VectorMetaData * mt
+				) :VectorAlgorithm(nullptr, sr, pt, mt){}
+			void Run(){
+				auto pt = this->GetPartition();
+				auto sr = this->GetScheduler();
+				auto mt = this->GetMetaData();
+				auto cel = pt->Partition(mt);
+				auto mr = new SimpleMaster(cel);
+				auto sl = new SimpleSlave();
+
+			}
+
+		};
 
     }
 }
@@ -113,16 +145,10 @@ namespace hpgc {
 
 int main(int argc, char ** argv){
     Init(argc,argv);
-    auto net = rpc::RPCNetwork::Get();
-    std::cout << net->Id() << std::endl;
-
-    if (net->Id() == 1)
-    {
-        std::cout << "node 1" << std::endl;
-    }
-    else
-    {
-        std::cout << "node other" << std::endl;
-    }
-    return 0;
+	auto emptyMetaData = VectorMetaData::Empty();
+	auto pt= new simple::SimplePartition();
+	auto sr = new scheduler::M2sScheduler();
+	auto al = new simple::SimpleAlgorithm(sr, pt,emptyMetaData);
+	al->Run();
+ 
 }

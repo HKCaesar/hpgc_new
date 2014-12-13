@@ -25,7 +25,7 @@ public:
                    ,scheduler::IVectorScheduler * sr
                    ,partition::IVectorPartition * pt
                    ,data::VectorMetaData * mt);
-    void						  Run();
+    virtual void				  Run();
     partition::IVectorPartition * GetPartition();
     scheduler::IVectorScheduler * GetScheduler();
     data::VectorMetaData		* GetMetaData();
