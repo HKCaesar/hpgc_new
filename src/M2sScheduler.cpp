@@ -11,7 +11,7 @@
 namespace hpgc {
 namespace scheduler {
 
-void M2sScheduler::Work(task::GeoTask task,
+void M2sScheduler::Work(task::GeoTask tk,
                         algorithm::HpgcVectorAlgorithm * hpgcAlg)
 {
     auto net = rpc::RPCNetwork::Get();
@@ -23,7 +23,7 @@ void M2sScheduler::Work(task::GeoTask task,
         node.Action();
     }
     else {
-        role::SlaveRole node = { task };
+        role::SlaveRole node = { tk };
         node.Action();
     }
     net->Barrier();

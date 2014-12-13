@@ -27,7 +27,7 @@ int SlaveRole::Action()
         ON_SCOPE_EXIT([&]() {delete barrel; });
         kRequest.set_starttime(timer::TimePoint2String(timer::Now()));
         kRequest.set_dataindex(barrel->Id());
-        if (m_alg(barrel)) {
+        if (m_task(barrel)) {
             kRequest.set_type(TASK_OK);
         }
         else {
@@ -42,7 +42,7 @@ int SlaveRole::Action()
 
 SlaveRole::SlaveRole(task::GeoTask tk)
 {
-    m_alg = tk;
+    m_task = tk;
     m_net = rpc::RPCNetwork::Get();
     m_workRunning = true;
     m_taskRunning = false;
@@ -72,5 +72,6 @@ SlaveRole::~SlaveRole()
 {
     m_workRunning = false;
 }
+
 }
 }

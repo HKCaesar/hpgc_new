@@ -11,14 +11,10 @@ namespace data {
 
 class VectorCellar {
 public:
-    virtual void AddBarrel(VectorBarral * barrel);
-
-    virtual VectorBarral * GetByIndex(int index);
-
-    virtual bool IsEmpty();
-
-    virtual int size();
-
+    virtual void			AddBarrel(VectorBarral * barrel);
+    virtual VectorBarral *	GetByIndex(int index);
+    virtual bool			IsEmpty();
+    virtual int				size();
     ~VectorCellar();
 
 private:

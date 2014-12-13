@@ -27,5 +27,6 @@ int VectorCellar::size()
 {
     return this->m_barrels.size();
 }
+
 }
 }

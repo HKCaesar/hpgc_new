@@ -23,10 +23,10 @@ public:
     virtual ~MasterRole();
 
 private:
-    bool m_masterRunning;
-    std::queue<int> m_activeSlaves;
-    std::vector<data::Record> m_statistics;
-    rpc::RPCNetwork * m_net;
+    bool						m_masterRunning;
+    std::queue<int>             m_activeSlaves;
+    std::vector<data::Record>   m_statistics;
+    rpc::RPCNetwork           * m_net;
 };
 
 

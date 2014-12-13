@@ -21,21 +21,24 @@ namespace algorithm {
 class HpgcVectorAlgorithm {
 
 public:
-    HpgcVectorAlgorithm(task::GeoTask alg, scheduler::IVectorScheduler * she,
-                        partition::IVectorPartition * par, data::VectorMetaData * dt);
-    void Run();
-
+    HpgcVectorAlgorithm(task::GeoTask tk
+					   ,scheduler::IVectorScheduler * sr
+					   ,partition::IVectorPartition * pt
+					   ,data::VectorMetaData * mt);
+    void						  Run();
     partition::IVectorPartition * GetPartition();
     scheduler::IVectorScheduler * GetScheduler();
-    data::VectorMetaData  *  GetMetaData();
-    task::GeoTask  GetAlgorithm();
+    data::VectorMetaData		* GetMetaData();
+    task::GeoTask				  GetAlgorithm();
 
 private:
-    task::GeoTask  m_algorithm;
+    task::GeoTask				  m_task;
     partition::IVectorPartition * m_partition;
     scheduler::IVectorScheduler * m_scheduler;
-    data::VectorMetaData * m_metaData;
+    data::VectorMetaData		* m_metaData;
 };
+
+
 }
 }
 

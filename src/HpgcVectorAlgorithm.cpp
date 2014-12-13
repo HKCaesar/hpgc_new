@@ -8,20 +8,20 @@
 namespace hpgc {
 namespace algorithm {
 
-HpgcVectorAlgorithm::HpgcVectorAlgorithm(task::GeoTask alg
-										,scheduler::IVectorScheduler * she
-										,partition::IVectorPartition * par
-										,data::VectorMetaData * meta)
+HpgcVectorAlgorithm::HpgcVectorAlgorithm(task::GeoTask tk
+                                        ,scheduler::IVectorScheduler * sr
+                                        ,partition::IVectorPartition * pt
+                                        ,data::VectorMetaData * mt)
 {
-    m_algorithm = alg;
-    m_partition = par;
-    m_scheduler = she;
-    m_metaData = meta;
+    m_task      = tk;
+    m_partition = pt;
+    m_scheduler = sr;
+    m_metaData  = mt;
 }
 
 void HpgcVectorAlgorithm::Run()
 {
-    m_scheduler->Work(m_algorithm, this);
+    m_scheduler->Work(m_task, this);
 }
 
 partition::IVectorPartition * HpgcVectorAlgorithm::GetPartition()
@@ -41,7 +41,7 @@ data::VectorMetaData * HpgcVectorAlgorithm::GetMetaData()
 
 task::GeoTask HpgcVectorAlgorithm::GetAlgorithm()
 {
-    return m_algorithm;
+    return m_task;
 }
 
 }

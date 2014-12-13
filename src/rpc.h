@@ -36,13 +36,13 @@ struct Header {
 };
 
 struct RPCRequest {
-    int target;
-    int rpc_type;
-    int failures;
+    int				 target;
+    int				 rpc_type;
+    int				 failures;
 
-    std::string payload;
-    MPI::Request mpi_req;
-    MPI::Status status;
+    std::string		 payload;
+    MPI::Request	 mpi_req;
+    MPI::Status		 status;
     timer::TimePoint start_time;
 
     RPCRequest(int target, int method, const Message & msg, Header h = Header());
@@ -58,37 +58,37 @@ struct CallbackInfo {
     Message * request;
     Message * response;
 
-    Callback call;
+    Callback  call;
 
-    bool spawn_thread;
+    bool      spawn_thread;
 };
 
 class RPCNetwork {
 public:
-    bool Active() const;
+    bool	Active() const;
     int64_t Pending_bytes() const;
 
     // Blocking read for the given source and message type.
-    void Read(int desired_src, int type, Message * data, int * source = NULL);
-    bool TryRead(int desired_src, int type, Message * data, int * source = NULL);
+    void    Read(int desired_src, int type, Message * data, int * source = NULL);
+    bool	TryRead(int desired_src, int type, Message * data, int * source = NULL);
 
     // Enqueue the given request for transmission.
-    void Send(RPCRequest * req);
-    void Send(int dst, int method, const Message & msg);
+    void	Send(RPCRequest * req);
+    void	Send(int dst, int method, const Message & msg);
 
-    void Broadcast(int method, const Message & msg);
-    void SyncBroadcast(int method, const Message & msg);
-    void WaitForSync(int method, int count);
-    void Barrier();
+    void	Broadcast(int method, const Message & msg);
+    void	SyncBroadcast(int method, const Message & msg);
+    void	WaitForSync(int method, int count);
+    void	Barrier();
 
     // Invoke 'method' on the destination, and wait for a reply.
-    void Call(int dst, int method, const Message & msg, Message * reply);
+    void	Call(int dst, int method, const Message & msg, Message * reply);
 
-    void Flush();
-    void Shutdown();
+    void	Flush();
+    void	Shutdown();
 
-    int Id() const;
-    int Size() const;
+    int		Id() const;
+    int		Size() const;
 
     static RPCNetwork * Get();
     static void Init();
@@ -110,9 +110,9 @@ public:
         Message * request;
         Message * response;
 
-        Callback call;
+        Callback  call;
 
-        bool spawn_thread;
+        bool	  spawn_thread;
     };
 
 private:
@@ -125,8 +125,8 @@ private:
 
     std::array<CallbackInfo *, kMaxMethods> m_callbacks;
 
-    std::vector<RPCRequest *> m_pending_sends;
-    std::unordered_set<RPCRequest *> m_active_sends;
+    std::vector<RPCRequest *>				m_pending_sends;
+    std::unordered_set<RPCRequest *>		m_active_sends;
 
     Queue m_requests[kMaxMethods][kMaxHosts];
     Queue m_replies[kMaxMethods][kMaxHosts];

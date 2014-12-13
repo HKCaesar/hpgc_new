@@ -6,11 +6,12 @@
 
 namespace hpgc {
 namespace data {
+
 struct Record {
     std::string start_time;
     std::string end_time;
-    int slave;
-    int id;
+    int			slave;
+    int			id;
 
 };
 

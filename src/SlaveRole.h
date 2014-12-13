@@ -11,21 +11,23 @@
 
 namespace hpgc {
 namespace role {
+
 class SlaveRole : public IRole {
 public:
     virtual int Action();
     SlaveRole(task::GeoTask tk);
-    ~SlaveRole();
+    virtual ~SlaveRole();
     int Id();
 private:
     bool m_workRunning;
     bool m_taskRunning;
-    task::GeoTask m_alg;
+    task::GeoTask m_task;
     rpc::RPCNetwork * m_net;
 
     void HandleGameOver(const EmptyMessage & req, EmptyMessage * resp,
                         const rpc::RPCInfo & rpc);
 };
+
 }
 }
 #endif // SlaveRole_h__
