@@ -22,9 +22,9 @@ class VectorAlgorithm {
 
 public:
     VectorAlgorithm(task::GeoTask tk
-					   ,scheduler::IVectorScheduler * sr
-					   ,partition::IVectorPartition * pt
-					   ,data::VectorMetaData * mt);
+                   ,scheduler::IVectorScheduler * sr
+                   ,partition::IVectorPartition * pt
+                   ,data::VectorMetaData * mt);
     void						  Run();
     partition::IVectorPartition * GetPartition();
     scheduler::IVectorScheduler * GetScheduler();

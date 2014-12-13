@@ -7,6 +7,8 @@
 #include "timer.h"
 #include "rpc.h"
 #include "hpgc.h"
+#include "MasterRole.h"
+#include "SlaveRole.h"
 
 #include <iostream>
 #include <geoalgorithm.format.h>
@@ -85,6 +87,29 @@ int mainTest(int argc, char ** argv)
     alg->Run();
     return 0;
 }
+
+namespace hpgc {
+	namespace simple {
+		class SimpleMaster : public role::MasterRole
+		{
+		public:
+		protected:
+		private:
+		};
+
+		class SimpleSlave : public role::SlaveRole
+		{
+
+		};
+
+		class SimplePartition : public partition::IVectorPartition
+		{
+
+		};
+
+	}
+}
+
 
 int main(int argc, char ** argv){
 	Init(argc,argv);
