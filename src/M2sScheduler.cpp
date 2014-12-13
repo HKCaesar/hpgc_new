@@ -12,7 +12,7 @@ namespace hpgc {
 namespace scheduler {
 
 void M2sScheduler::Work(task::GeoTask tk,
-                        algorithm::HpgcVectorAlgorithm * hpgcAlg)
+                        algorithm::VectorAlgorithm * hpgcAlg)
 {
     auto net = rpc::RPCNetwork::Get();
     if (net->Id() == 0) {

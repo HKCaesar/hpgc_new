@@ -18,10 +18,10 @@ class IVectorScheduler;
 
 namespace algorithm {
 
-class HpgcVectorAlgorithm {
+class VectorAlgorithm {
 
 public:
-    HpgcVectorAlgorithm(task::GeoTask tk
+    VectorAlgorithm(task::GeoTask tk
 					   ,scheduler::IVectorScheduler * sr
 					   ,partition::IVectorPartition * pt
 					   ,data::VectorMetaData * mt);
