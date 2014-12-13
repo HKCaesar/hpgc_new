@@ -99,8 +99,5 @@ int main(int argc, char ** argv){
 	{
 		std::cout << "node other" << std::endl;
 	}
-	net->Id();
-	net->Id();
-	net->Id();
 	return 0;
 }
