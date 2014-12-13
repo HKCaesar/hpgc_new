@@ -2,7 +2,7 @@
 #define M2sScheduler_h__
 
 #include "IVectorScheduler.h"
-#include "HpgcVectorAlgorithm.h"
+#include "VectorAlgorithm.h"
 #include "ITask.h"
 
 namespace hpgc {

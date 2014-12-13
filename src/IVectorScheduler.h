@@ -5,7 +5,7 @@
 #include "IRole.h"
 #include "IV2VAlgorithm.h"
 #include "VectorCellar.h"
-#include "HpgcVectorAlgorithm.h"
+#include "VectorAlgorithm.h"
 #include "ITask.h"
 #include "hpgc.h"
 

@@ -25,14 +25,14 @@ struct TaskState {
         PENDING = 0, ACTIVE = 1, FINISHED = 2
     };
 
-    TaskState(Taskid id, data::VectorBarral * data) :
-        id(id), status(PENDING), data(data), slave(-1) {
+    TaskState(Taskid id, data::VectorBarral * dat) :
+        id(id), status(PENDING), dt(dat), slave(-1) {
     }
 
     Taskid id;
     Status status;
     int slave;
-    data::VectorBarral * data;
+    data::VectorBarral * dt;
 };
 
 static std::map<Taskid, TaskState *> m_task;
@@ -88,9 +88,9 @@ int MasterRole::Action()
         if (task != nullptr && !m_activeSlaves.empty()) {
             int slave = m_activeSlaves.front();
             m_activeSlaves.pop();
-            drequest = DataMessageFromBarral(task->data);
+            drequest = data::DataMessageFromBarral(task->dt);
             ON_SCOPE_EXIT([&]() {delete drequest; });
-            m_net->Send(slave, WORKER_RUN_TASK, *drequest);
+            m_net->Send(slave, MessageType::WORKER_RUN_TASK, *drequest);
             task->slave = slave;
             task->status = TaskState::ACTIVE;
         }
@@ -100,7 +100,7 @@ int MasterRole::Action()
             if (pair.second->status == TaskState::ACTIVE) {
                 int source = -1;
                 TaskMessage tRequest;
-                if (m_net->TryRead(pair.second->slave, WORKER_TASK_DONE, &tRequest, &source)) {
+				if (m_net->TryRead(pair.second->slave, MessageType::WORKER_TASK_DONE, &tRequest, &source)) {
                     data::Record stat = data::RecordFromTaskMessage(&tRequest);
                     stat.slave = pair.second->slave;
                     m_statistics.push_back(stat);
@@ -124,7 +124,7 @@ MasterRole::MasterRole(data::VectorCellar * cellar)
     for (int i = 0; i < m_net->Size() - 1; ++i) {
         RegisterWorkerRequest req;
         int src = 0;
-        m_net->Read(rpc::ANY_SOURCE, REGISTER_WORKER, &req, &src);
+		m_net->Read(rpc::ANY_SOURCE, MessageType::REGISTER_WORKER, &req, &src);
         m_activeSlaves.push(src);
     }
 }
@@ -133,7 +133,7 @@ MasterRole::~MasterRole()
 {
     for (int i = 0; i < m_net->Size() - 1; ++i) {
         EmptyMessage req;
-        m_net->Send(i + 1, WORKER_FINALIZE, req);
+		m_net->Send(i + 1, MessageType::WORKER_FINALIZE, req);
     }
 }
 }

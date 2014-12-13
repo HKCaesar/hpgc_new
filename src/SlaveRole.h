@@ -6,7 +6,7 @@
 #include "vector.metadata.h"
 #include "rpc.h"
 #include "rpc.message.pb.h"
-#include "HpgcVectorAlgorithm.h"
+#include "VectorAlgorithm.h"
 #include "ITask.h"
 
 namespace hpgc {

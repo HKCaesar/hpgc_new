@@ -1,4 +1,4 @@
-#include "HpgcVectorAlgorithm.h"
+#include "VectorAlgorithm.h"
 #include "v2vproj.h"
 #include "EfcPartition.h"
 #include "vector.metadata.h"
