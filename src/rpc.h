@@ -129,7 +129,7 @@ private:
     std::unordered_set<RPCRequest *>		m_active_sends;
 
     Queue m_requests[kMaxMethods][kMaxHosts];
-    Queue m_replies[kMaxMethods][kMaxHosts];
+    Queue  m_replies[kMaxMethods][kMaxHosts];
 
     MPI::Comm * m_word;
     mutable std::recursive_mutex m_send_lock;

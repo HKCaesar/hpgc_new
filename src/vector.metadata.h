@@ -17,14 +17,14 @@ private:
 class VectorMetaData {
 public:
     VectorMetaData(const char * srcds
-				  ,const char * srclayer
-				  ,const char * dstds
-				  ,const char * dstlayer);
+                  ,const char * srclayer
+                  ,const char * dstds
+                  ,const char * dstlayer);
     MetaData * GetSrcMetaData();
     MetaData * GetDstMetaData();
     ~VectorMetaData();
 
-	static VectorMetaData * Empty();
+    static VectorMetaData * Empty();
 private:
     MetaData * m_src;
     MetaData * m_dst;

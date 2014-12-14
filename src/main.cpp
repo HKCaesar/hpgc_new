@@ -103,7 +103,7 @@ namespace hpgc {
         class SimpleSlave : public role::SlaveRole
         {
 		public:
-			SimpleSlave() :SlaveRole(nullptr){}
+			SimpleSlave(task::GeoTask tk) :SlaveRole(tk){}
 			~SimpleSlave()
 			{
 
@@ -133,7 +133,7 @@ namespace hpgc {
 				auto mt = this->GetMetaData();
 				auto cel = pt->Partition(mt);
 				auto mr = new SimpleMaster(cel);
-				auto sl = new SimpleSlave();
+				auto sl = new SimpleSlave(nullptr);
 
 			}
 

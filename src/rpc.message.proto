@@ -36,4 +36,10 @@ message DataMessage{
     required string DstDataSource = 4;
     required string DstLayer = 5;
     repeated int32 features = 6;
+    optional string description = 7;
+    optional string extension = 8;
+}
+
+message DataCellar{
+	repeated DataMessage = 1;
 }
