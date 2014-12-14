@@ -33,6 +33,16 @@ int VectorBarral::Id() const
     return m_id;
 }
 
+std::string VectorBarral::Description() const
+{
+	return m_description;
+}
+
+std::string VectorBarral::Extension() const
+{
+	return m_extension;
+}
+
 
 VectorBarral * BarralFromDataMessage(DataMessage * msg)
 {
@@ -46,7 +56,7 @@ VectorBarral * BarralFromDataMessage(DataMessage * msg)
     for (int i = 0; i < count; ++i) {
         feats.push_back(msg->features(i));
     }
-    return new VectorBarral(srcds, srclayer, feats, dstds, dstlayer, id);
+    return new VectorBarral(srcds, srclayer, feats, dstds, dstlayer, id,msg->description(),msg->extension());
 }
 
 DataMessage * DataMessageFromBarral(VectorBarral * barral)
@@ -60,6 +70,8 @@ DataMessage * DataMessageFromBarral(VectorBarral * barral)
     auto features = barral->GetFeatures();
     std::for_each(features.begin(), features.end(),
     [&](int id) {dmsg->add_features(id); });
+	dmsg->set_description(barral->Description());
+	dmsg->set_extension(barral->Extension());
     return dmsg;
 }
 

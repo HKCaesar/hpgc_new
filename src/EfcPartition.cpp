@@ -39,7 +39,9 @@ VectorCellar * EfcPartition::Partition(VectorMetaData * meta)
                                            , srcFeatures
                                            , dstMeta->GetDataSourceName()
                                            , dstMeta->GetLayerName()
-                                           , id++)
+                                           , id++
+										   , ""
+										   , "")
                          );
         srcFeatures.clear();
     }

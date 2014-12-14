@@ -100,7 +100,7 @@ int MasterRole::Action()
             if (pair.second->status == TaskState::ACTIVE) {
                 int source = -1;
                 TaskMessage tRequest;
-				if (m_net->TryRead(pair.second->slave, MessageType::WORKER_TASK_DONE, &tRequest, &source)) {
+                if (m_net->TryRead(pair.second->slave, MessageType::WORKER_TASK_DONE, &tRequest, &source)) {
                     data::Record stat = data::RecordFromTaskMessage(&tRequest);
                     stat.slave = pair.second->slave;
                     m_statistics.push_back(stat);
@@ -124,7 +124,7 @@ MasterRole::MasterRole(data::VectorCellar * cellar)
     for (int i = 0; i < m_net->Size() - 1; ++i) {
         RegisterWorkerRequest req;
         int src = 0;
-		m_net->Read(rpc::ANY_SOURCE, MessageType::REGISTER_WORKER, &req, &src);
+        m_net->Read(rpc::ANY_SOURCE, MessageType::REGISTER_WORKER, &req, &src);
         m_activeSlaves.push(src);
     }
 }
@@ -133,7 +133,7 @@ MasterRole::~MasterRole()
 {
     for (int i = 0; i < m_net->Size() - 1; ++i) {
         EmptyMessage req;
-		m_net->Send(i + 1, MessageType::WORKER_FINALIZE, req);
+        m_net->Send(i + 1, MessageType::WORKER_FINALIZE, req);
     }
 }
 

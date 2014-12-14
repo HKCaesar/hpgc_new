@@ -164,7 +164,7 @@ bool RPCNetwork::check_request_queue(int src, int type, Message * data)
     Queue & q = m_requests[type][src];
     if (!q.empty()) {
         std::lock_guard<std::recursive_mutex> sl(m_q_lock[type]);
-        if (q.empty())
+        if (q.empty());
             return false;
         const std::string & s = q.front();
         if (data) {
@@ -297,7 +297,7 @@ void RPCNetwork::Barrier()
     m_word->Barrier();
 }
 
-void RPCNetwork::_RegisterCallback(int message_type, Message * req,
+CallbackInfo * RPCNetwork::_RegisterCallback(int req_type, Message * req,
                                    Message * resp, Callback cb)
 {
     CallbackInfo * cbinfo = new CallbackInfo;
@@ -305,7 +305,8 @@ void RPCNetwork::_RegisterCallback(int message_type, Message * req,
     cbinfo->request = req;
     cbinfo->response = resp;
     cbinfo->call = cb;
-    m_callbacks[message_type] = cbinfo;
+    m_callbacks[req_type] = cbinfo;
+	return cbinfo;
 }
 
 void RPCNetwork::SpawnThreadFor(int req_type)

@@ -99,21 +99,12 @@ public:
     typedef std::function<void(const RPCInfo & rpc)> Callback;
 
     // Use RegisterCallback(...) instead.
-    void _RegisterCallback(int req_type, Message * req, Message * resp,
+    CallbackInfo *  _RegisterCallback(int req_type, Message * req, Message * resp,
                            Callback cb);
 
     // After registering a callback, indicate that it should be invoked in a
     // separate thread from the RPC server.
     void SpawnThreadFor(int req_type);
-
-    struct CallbackInfo {
-        Message * request;
-        Message * response;
-
-        Callback  call;
-
-        bool	  spawn_thread;
-    };
 
 private:
     static const int kMaxHosts = 512;
@@ -150,11 +141,12 @@ private:
 using namespace std::placeholders;
 
 template <class Request, class Response, class Function, class Klass>
-void RegisterCallback(int req_type, Request * req, Response * resp,
+CallbackInfo * RegisterCallback(int req_type, Request * req, Response * resp,
                       Function function, Klass klass)
 {
-    RPCNetwork::Get()->_RegisterCallback(req_type, req, resp, std::bind(function,
+    auto cbinfo =RPCNetwork::Get()->_RegisterCallback(req_type, req, resp, std::bind(function,
                                          klass, std::cref(*req), resp, _1));
+    return cbinfo;
 }
 
 }
