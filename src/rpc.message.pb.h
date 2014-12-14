@@ -38,17 +38,26 @@ class EmptyMessage;
 class RegisterWorkerRequest;
 class TaskMessage;
 class DataMessage;
+class DataCellar;
+class CCMsg1;
+class CCMsg2;
+class CCMsg3;
+class CCMsg4;
 
 enum MessageType {
   REGISTER_WORKER = 1,
   WORKER_RUN_TASK = 2,
   WORKER_TASK_DONE = 3,
   WORKER_FINALIZE = 4,
-  WORKER_FINALIZE_DONE = 5
+  WORKER_FINALIZE_DONE = 5,
+  CC_MESSAGE_1 = 6,
+  CC_MESSAGE_2 = 7,
+  CC_MESSAGE_3 = 8,
+  CC_MESSAGE_4 = 9
 };
 bool MessageType_IsValid(int value);
 const MessageType MessageType_MIN = REGISTER_WORKER;
-const MessageType MessageType_MAX = WORKER_FINALIZE_DONE;
+const MessageType MessageType_MAX = CC_MESSAGE_4;
 const int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MessageType_descriptor();
@@ -79,6 +88,25 @@ inline bool TaskType_Parse(
     const ::std::string& name, TaskType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<TaskType>(
     TaskType_descriptor(), name, value);
+}
+enum LayerType {
+  TWO_LAYER = 1,
+  THREE_LAYER = 2
+};
+bool LayerType_IsValid(int value);
+const LayerType LayerType_MIN = TWO_LAYER;
+const LayerType LayerType_MAX = THREE_LAYER;
+const int LayerType_ARRAYSIZE = LayerType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* LayerType_descriptor();
+inline const ::std::string& LayerType_Name(LayerType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    LayerType_descriptor(), value);
+}
+inline bool LayerType_Parse(
+    const ::std::string& name, LayerType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<LayerType>(
+    LayerType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -479,6 +507,30 @@ class DataMessage : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_features();
 
+  // optional string description = 7;
+  inline bool has_description() const;
+  inline void clear_description();
+  static const int kDescriptionFieldNumber = 7;
+  inline const ::std::string& description() const;
+  inline void set_description(const ::std::string& value);
+  inline void set_description(const char* value);
+  inline void set_description(const char* value, size_t size);
+  inline ::std::string* mutable_description();
+  inline ::std::string* release_description();
+  inline void set_allocated_description(::std::string* description);
+
+  // optional string extension = 8;
+  inline bool has_extension() const;
+  inline void clear_extension();
+  static const int kExtensionFieldNumber = 8;
+  inline const ::std::string& extension() const;
+  inline void set_extension(const ::std::string& value);
+  inline void set_extension(const char* value);
+  inline void set_extension(const char* value, size_t size);
+  inline ::std::string* mutable_extension();
+  inline ::std::string* release_extension();
+  inline void set_allocated_extension(::std::string* extension);
+
   // @@protoc_insertion_point(class_scope:hpgc.DataMessage)
  private:
   inline void set_has_dataindex();
@@ -491,6 +543,10 @@ class DataMessage : public ::google::protobuf::Message {
   inline void clear_has_dstdatasource();
   inline void set_has_dstlayer();
   inline void clear_has_dstlayer();
+  inline void set_has_description();
+  inline void clear_has_description();
+  inline void set_has_extension();
+  inline void clear_has_extension();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -499,10 +555,12 @@ class DataMessage : public ::google::protobuf::Message {
   ::std::string* dstdatasource_;
   ::std::string* dstlayer_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > features_;
+  ::std::string* description_;
+  ::std::string* extension_;
   ::google::protobuf::int32 dataindex_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
 
   friend void  protobuf_AddDesc_rpc_2emessage_2eproto();
   friend void protobuf_AssignDesc_rpc_2emessage_2eproto();
@@ -510,6 +568,472 @@ class DataMessage : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static DataMessage* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DataCellar : public ::google::protobuf::Message {
+ public:
+  DataCellar();
+  virtual ~DataCellar();
+
+  DataCellar(const DataCellar& from);
+
+  inline DataCellar& operator=(const DataCellar& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DataCellar& default_instance();
+
+  void Swap(DataCellar* other);
+
+  // implements Message ----------------------------------------------
+
+  DataCellar* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DataCellar& from);
+  void MergeFrom(const DataCellar& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .hpgc.DataMessage cellar = 1;
+  inline int cellar_size() const;
+  inline void clear_cellar();
+  static const int kCellarFieldNumber = 1;
+  inline const ::hpgc::DataMessage& cellar(int index) const;
+  inline ::hpgc::DataMessage* mutable_cellar(int index);
+  inline ::hpgc::DataMessage* add_cellar();
+  inline const ::google::protobuf::RepeatedPtrField< ::hpgc::DataMessage >&
+      cellar() const;
+  inline ::google::protobuf::RepeatedPtrField< ::hpgc::DataMessage >*
+      mutable_cellar();
+
+  // @@protoc_insertion_point(class_scope:hpgc.DataCellar)
+ private:
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedPtrField< ::hpgc::DataMessage > cellar_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_rpc_2emessage_2eproto();
+  friend void protobuf_AssignDesc_rpc_2emessage_2eproto();
+  friend void protobuf_ShutdownFile_rpc_2emessage_2eproto();
+
+  void InitAsDefaultInstance();
+  static DataCellar* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CCMsg1 : public ::google::protobuf::Message {
+ public:
+  CCMsg1();
+  virtual ~CCMsg1();
+
+  CCMsg1(const CCMsg1& from);
+
+  inline CCMsg1& operator=(const CCMsg1& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CCMsg1& default_instance();
+
+  void Swap(CCMsg1* other);
+
+  // implements Message ----------------------------------------------
+
+  CCMsg1* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CCMsg1& from);
+  void MergeFrom(const CCMsg1& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:hpgc.CCMsg1)
+ private:
+  inline void set_has_id();
+  inline void clear_has_id();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::int32 id_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_rpc_2emessage_2eproto();
+  friend void protobuf_AssignDesc_rpc_2emessage_2eproto();
+  friend void protobuf_ShutdownFile_rpc_2emessage_2eproto();
+
+  void InitAsDefaultInstance();
+  static CCMsg1* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CCMsg2 : public ::google::protobuf::Message {
+ public:
+  CCMsg2();
+  virtual ~CCMsg2();
+
+  CCMsg2(const CCMsg2& from);
+
+  inline CCMsg2& operator=(const CCMsg2& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CCMsg2& default_instance();
+
+  void Swap(CCMsg2* other);
+
+  // implements Message ----------------------------------------------
+
+  CCMsg2* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CCMsg2& from);
+  void MergeFrom(const CCMsg2& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required bool IsDone = 1;
+  inline bool has_isdone() const;
+  inline void clear_isdone();
+  static const int kIsDoneFieldNumber = 1;
+  inline bool isdone() const;
+  inline void set_isdone(bool value);
+
+  // @@protoc_insertion_point(class_scope:hpgc.CCMsg2)
+ private:
+  inline void set_has_isdone();
+  inline void clear_has_isdone();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  bool isdone_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void  protobuf_AddDesc_rpc_2emessage_2eproto();
+  friend void protobuf_AssignDesc_rpc_2emessage_2eproto();
+  friend void protobuf_ShutdownFile_rpc_2emessage_2eproto();
+
+  void InitAsDefaultInstance();
+  static CCMsg2* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CCMsg3 : public ::google::protobuf::Message {
+ public:
+  CCMsg3();
+  virtual ~CCMsg3();
+
+  CCMsg3(const CCMsg3& from);
+
+  inline CCMsg3& operator=(const CCMsg3& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CCMsg3& default_instance();
+
+  void Swap(CCMsg3* other);
+
+  // implements Message ----------------------------------------------
+
+  CCMsg3* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CCMsg3& from);
+  void MergeFrom(const CCMsg3& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required .hpgc.LayerType Type = 1;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 1;
+  inline ::hpgc::LayerType type() const;
+  inline void set_type(::hpgc::LayerType value);
+
+  // required int32 id = 2;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 2;
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:hpgc.CCMsg3)
+ private:
+  inline void set_has_type();
+  inline void clear_has_type();
+  inline void set_has_id();
+  inline void clear_has_id();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  int type_;
+  ::google::protobuf::int32 id_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+
+  friend void  protobuf_AddDesc_rpc_2emessage_2eproto();
+  friend void protobuf_AssignDesc_rpc_2emessage_2eproto();
+  friend void protobuf_ShutdownFile_rpc_2emessage_2eproto();
+
+  void InitAsDefaultInstance();
+  static CCMsg3* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CCMsg4 : public ::google::protobuf::Message {
+ public:
+  CCMsg4();
+  virtual ~CCMsg4();
+
+  CCMsg4(const CCMsg4& from);
+
+  inline CCMsg4& operator=(const CCMsg4& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CCMsg4& default_instance();
+
+  void Swap(CCMsg4* other);
+
+  // implements Message ----------------------------------------------
+
+  CCMsg4* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CCMsg4& from);
+  void MergeFrom(const CCMsg4& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 Column = 1;
+  inline bool has_column() const;
+  inline void clear_column();
+  static const int kColumnFieldNumber = 1;
+  inline ::google::protobuf::int32 column() const;
+  inline void set_column(::google::protobuf::int32 value);
+
+  // required int32 Row = 2;
+  inline bool has_row() const;
+  inline void clear_row();
+  static const int kRowFieldNumber = 2;
+  inline ::google::protobuf::int32 row() const;
+  inline void set_row(::google::protobuf::int32 value);
+
+  // repeated double Trans = 3;
+  inline int trans_size() const;
+  inline void clear_trans();
+  static const int kTransFieldNumber = 3;
+  inline double trans(int index) const;
+  inline void set_trans(int index, double value);
+  inline void add_trans(double value);
+  inline const ::google::protobuf::RepeatedField< double >&
+      trans() const;
+  inline ::google::protobuf::RepeatedField< double >*
+      mutable_trans();
+
+  // required int32 Pixel = 4;
+  inline bool has_pixel() const;
+  inline void clear_pixel();
+  static const int kPixelFieldNumber = 4;
+  inline ::google::protobuf::int32 pixel() const;
+  inline void set_pixel(::google::protobuf::int32 value);
+
+  // required int32 Line = 5;
+  inline bool has_line() const;
+  inline void clear_line();
+  static const int kLineFieldNumber = 5;
+  inline ::google::protobuf::int32 line() const;
+  inline void set_line(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:hpgc.CCMsg4)
+ private:
+  inline void set_has_column();
+  inline void clear_has_column();
+  inline void set_has_row();
+  inline void clear_has_row();
+  inline void set_has_pixel();
+  inline void clear_has_pixel();
+  inline void set_has_line();
+  inline void clear_has_line();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::int32 column_;
+  ::google::protobuf::int32 row_;
+  ::google::protobuf::RepeatedField< double > trans_;
+  ::google::protobuf::int32 pixel_;
+  ::google::protobuf::int32 line_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+
+  friend void  protobuf_AddDesc_rpc_2emessage_2eproto();
+  friend void protobuf_AssignDesc_rpc_2emessage_2eproto();
+  friend void protobuf_ShutdownFile_rpc_2emessage_2eproto();
+
+  void InitAsDefaultInstance();
+  static CCMsg4* default_instance_;
 };
 // ===================================================================
 
@@ -1064,6 +1588,393 @@ DataMessage::mutable_features() {
   return &features_;
 }
 
+// optional string description = 7;
+inline bool DataMessage::has_description() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void DataMessage::set_has_description() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void DataMessage::clear_has_description() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void DataMessage::clear_description() {
+  if (description_ != &::google::protobuf::internal::kEmptyString) {
+    description_->clear();
+  }
+  clear_has_description();
+}
+inline const ::std::string& DataMessage::description() const {
+  return *description_;
+}
+inline void DataMessage::set_description(const ::std::string& value) {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void DataMessage::set_description(const char* value) {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void DataMessage::set_description(const char* value, size_t size) {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  description_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DataMessage::mutable_description() {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  return description_;
+}
+inline ::std::string* DataMessage::release_description() {
+  clear_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = description_;
+    description_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void DataMessage::set_allocated_description(::std::string* description) {
+  if (description_ != &::google::protobuf::internal::kEmptyString) {
+    delete description_;
+  }
+  if (description) {
+    set_has_description();
+    description_ = description;
+  } else {
+    clear_has_description();
+    description_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string extension = 8;
+inline bool DataMessage::has_extension() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void DataMessage::set_has_extension() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void DataMessage::clear_has_extension() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void DataMessage::clear_extension() {
+  if (extension_ != &::google::protobuf::internal::kEmptyString) {
+    extension_->clear();
+  }
+  clear_has_extension();
+}
+inline const ::std::string& DataMessage::extension() const {
+  return *extension_;
+}
+inline void DataMessage::set_extension(const ::std::string& value) {
+  set_has_extension();
+  if (extension_ == &::google::protobuf::internal::kEmptyString) {
+    extension_ = new ::std::string;
+  }
+  extension_->assign(value);
+}
+inline void DataMessage::set_extension(const char* value) {
+  set_has_extension();
+  if (extension_ == &::google::protobuf::internal::kEmptyString) {
+    extension_ = new ::std::string;
+  }
+  extension_->assign(value);
+}
+inline void DataMessage::set_extension(const char* value, size_t size) {
+  set_has_extension();
+  if (extension_ == &::google::protobuf::internal::kEmptyString) {
+    extension_ = new ::std::string;
+  }
+  extension_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DataMessage::mutable_extension() {
+  set_has_extension();
+  if (extension_ == &::google::protobuf::internal::kEmptyString) {
+    extension_ = new ::std::string;
+  }
+  return extension_;
+}
+inline ::std::string* DataMessage::release_extension() {
+  clear_has_extension();
+  if (extension_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = extension_;
+    extension_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void DataMessage::set_allocated_extension(::std::string* extension) {
+  if (extension_ != &::google::protobuf::internal::kEmptyString) {
+    delete extension_;
+  }
+  if (extension) {
+    set_has_extension();
+    extension_ = extension;
+  } else {
+    clear_has_extension();
+    extension_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// -------------------------------------------------------------------
+
+// DataCellar
+
+// repeated .hpgc.DataMessage cellar = 1;
+inline int DataCellar::cellar_size() const {
+  return cellar_.size();
+}
+inline void DataCellar::clear_cellar() {
+  cellar_.Clear();
+}
+inline const ::hpgc::DataMessage& DataCellar::cellar(int index) const {
+  return cellar_.Get(index);
+}
+inline ::hpgc::DataMessage* DataCellar::mutable_cellar(int index) {
+  return cellar_.Mutable(index);
+}
+inline ::hpgc::DataMessage* DataCellar::add_cellar() {
+  return cellar_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::hpgc::DataMessage >&
+DataCellar::cellar() const {
+  return cellar_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::hpgc::DataMessage >*
+DataCellar::mutable_cellar() {
+  return &cellar_;
+}
+
+// -------------------------------------------------------------------
+
+// CCMsg1
+
+// required int32 id = 1;
+inline bool CCMsg1::has_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CCMsg1::set_has_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CCMsg1::clear_has_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CCMsg1::clear_id() {
+  id_ = 0;
+  clear_has_id();
+}
+inline ::google::protobuf::int32 CCMsg1::id() const {
+  return id_;
+}
+inline void CCMsg1::set_id(::google::protobuf::int32 value) {
+  set_has_id();
+  id_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// CCMsg2
+
+// required bool IsDone = 1;
+inline bool CCMsg2::has_isdone() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CCMsg2::set_has_isdone() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CCMsg2::clear_has_isdone() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CCMsg2::clear_isdone() {
+  isdone_ = false;
+  clear_has_isdone();
+}
+inline bool CCMsg2::isdone() const {
+  return isdone_;
+}
+inline void CCMsg2::set_isdone(bool value) {
+  set_has_isdone();
+  isdone_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// CCMsg3
+
+// required .hpgc.LayerType Type = 1;
+inline bool CCMsg3::has_type() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CCMsg3::set_has_type() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CCMsg3::clear_has_type() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CCMsg3::clear_type() {
+  type_ = 1;
+  clear_has_type();
+}
+inline ::hpgc::LayerType CCMsg3::type() const {
+  return static_cast< ::hpgc::LayerType >(type_);
+}
+inline void CCMsg3::set_type(::hpgc::LayerType value) {
+  assert(::hpgc::LayerType_IsValid(value));
+  set_has_type();
+  type_ = value;
+}
+
+// required int32 id = 2;
+inline bool CCMsg3::has_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CCMsg3::set_has_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CCMsg3::clear_has_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CCMsg3::clear_id() {
+  id_ = 0;
+  clear_has_id();
+}
+inline ::google::protobuf::int32 CCMsg3::id() const {
+  return id_;
+}
+inline void CCMsg3::set_id(::google::protobuf::int32 value) {
+  set_has_id();
+  id_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// CCMsg4
+
+// required int32 Column = 1;
+inline bool CCMsg4::has_column() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CCMsg4::set_has_column() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CCMsg4::clear_has_column() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CCMsg4::clear_column() {
+  column_ = 0;
+  clear_has_column();
+}
+inline ::google::protobuf::int32 CCMsg4::column() const {
+  return column_;
+}
+inline void CCMsg4::set_column(::google::protobuf::int32 value) {
+  set_has_column();
+  column_ = value;
+}
+
+// required int32 Row = 2;
+inline bool CCMsg4::has_row() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CCMsg4::set_has_row() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CCMsg4::clear_has_row() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CCMsg4::clear_row() {
+  row_ = 0;
+  clear_has_row();
+}
+inline ::google::protobuf::int32 CCMsg4::row() const {
+  return row_;
+}
+inline void CCMsg4::set_row(::google::protobuf::int32 value) {
+  set_has_row();
+  row_ = value;
+}
+
+// repeated double Trans = 3;
+inline int CCMsg4::trans_size() const {
+  return trans_.size();
+}
+inline void CCMsg4::clear_trans() {
+  trans_.Clear();
+}
+inline double CCMsg4::trans(int index) const {
+  return trans_.Get(index);
+}
+inline void CCMsg4::set_trans(int index, double value) {
+  trans_.Set(index, value);
+}
+inline void CCMsg4::add_trans(double value) {
+  trans_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< double >&
+CCMsg4::trans() const {
+  return trans_;
+}
+inline ::google::protobuf::RepeatedField< double >*
+CCMsg4::mutable_trans() {
+  return &trans_;
+}
+
+// required int32 Pixel = 4;
+inline bool CCMsg4::has_pixel() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CCMsg4::set_has_pixel() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CCMsg4::clear_has_pixel() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CCMsg4::clear_pixel() {
+  pixel_ = 0;
+  clear_has_pixel();
+}
+inline ::google::protobuf::int32 CCMsg4::pixel() const {
+  return pixel_;
+}
+inline void CCMsg4::set_pixel(::google::protobuf::int32 value) {
+  set_has_pixel();
+  pixel_ = value;
+}
+
+// required int32 Line = 5;
+inline bool CCMsg4::has_line() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CCMsg4::set_has_line() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CCMsg4::clear_has_line() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CCMsg4::clear_line() {
+  line_ = 0;
+  clear_has_line();
+}
+inline ::google::protobuf::int32 CCMsg4::line() const {
+  return line_;
+}
+inline void CCMsg4::set_line(::google::protobuf::int32 value) {
+  set_has_line();
+  line_ = value;
+}
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -1080,6 +1991,10 @@ inline const EnumDescriptor* GetEnumDescriptor< ::hpgc::MessageType>() {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::hpgc::TaskType>() {
   return ::hpgc::TaskType_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::hpgc::LayerType>() {
+  return ::hpgc::LayerType_descriptor();
 }
 
 }  // namespace google

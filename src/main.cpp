@@ -98,6 +98,7 @@ namespace hpgc {
 
 			}
 
+			int Action(){ return 1; }
         };
 
         class SimpleSlave : public role::SlaveRole
@@ -109,7 +110,46 @@ namespace hpgc {
 
 			}
 
+			int Action(){ return 1; };
+
         };
+
+		class SimpleScheduler : public scheduler::IVectorScheduler
+		{
+		public:
+			SimpleScheduler();
+			~SimpleScheduler();
+
+			void Work(task::GeoTask tk, algorithm::VectorAlgorithm * hpgcAlg);
+
+		private:
+
+		};
+
+		SimpleScheduler::SimpleScheduler()
+		{
+		}
+
+		SimpleScheduler::~SimpleScheduler()
+		{
+		}
+
+		void SimpleScheduler::Work(task::GeoTask tk, algorithm::VectorAlgorithm * hpgcAlg)
+		{
+			auto net = rpc::RPCNetwork::Get();
+			if (net->Id() == 0) {
+				auto meta = hpgcAlg->GetMetaData();
+				auto partition = hpgcAlg->GetPartition();
+				auto srcCellar = partition->Partition(meta);
+				SimpleMaster node = { srcCellar };
+				node.Action();
+			}
+			else {
+				SimpleSlave node = {nullptr};
+				node.Action();
+			}
+			net->Barrier();
+		}
 
         class SimplePartition : public partition::IVectorPartition
         {
@@ -128,13 +168,8 @@ namespace hpgc {
 				, data::VectorMetaData * mt
 				) :VectorAlgorithm(nullptr, sr, pt, mt){}
 			void Run(){
-				auto pt = this->GetPartition();
 				auto sr = this->GetScheduler();
-				auto mt = this->GetMetaData();
-				auto cel = pt->Partition(mt);
-				auto mr = new SimpleMaster(cel);
-				auto sl = new SimpleSlave(nullptr);
-
+				sr->Work(nullptr, this);
 			}
 
 		};
@@ -178,8 +213,8 @@ namespace hpgc {
 int main(int argc, char ** argv){
     Init(argc,argv);
 	auto emptyMetaData = VectorMetaData::Empty();
-	auto pt= new simple::SimplePartition();
-	auto sr = new scheduler::M2sScheduler();
+	auto pt = new simple::SimplePartition();
+	auto sr = new simple::SimpleScheduler();
 	auto al = new simple::SimpleAlgorithm(sr, pt,emptyMetaData);
 	al->Run();
  

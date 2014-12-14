@@ -8,6 +8,11 @@ enum MessageType{
 
     WORKER_FINALIZE = 4;
     WORKER_FINALIZE_DONE = 5;
+
+    CC_MESSAGE_1 = 6;
+    CC_MESSAGE_2 = 7;
+    CC_MESSAGE_3 = 8;
+    CC_MESSAGE_4 = 9;
 }
 
 enum TaskType{
@@ -41,5 +46,33 @@ message DataMessage{
 }
 
 message DataCellar{
-	repeated DataMessage = 1;
+    repeated DataMessage cellar = 1;
+}
+
+
+// cheng cong's
+message CCMsg1{
+    required int32 id = 1;
+}
+
+message CCMsg2{
+    required bool IsDone = 1;
+}
+
+enum LayerType{
+    TWO_LAYER = 1;
+    THREE_LAYER = 2;
+}
+
+message CCMsg3{
+    required LayerType Type = 1;
+    required int32 id = 2;
+}
+
+message CCMsg4{
+    required int32 Column = 1;
+    required int32 Row = 2;
+    repeated double Trans = 3;
+    required int32 Pixel = 4;
+    required int32 Line = 5;
 }
