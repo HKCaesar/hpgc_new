@@ -217,5 +217,5 @@ int main(int argc, char ** argv){
 	auto sr = new simple::SimpleScheduler();
 	auto al = new simple::SimpleAlgorithm(sr, pt,emptyMetaData);
 	al->Run();
- 
+	return 0;
 }
