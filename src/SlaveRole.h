@@ -24,7 +24,7 @@ private:
     task::GeoTask m_task;
     rpc::RPCNetwork * m_net;
 
-    void HandleGameOver(const EmptyMessage & req, EmptyMessage * resp,
+    void HandleGameOver(const data::EmptyMessage & req, data::EmptyMessage * resp,
                         const rpc::RPCInfo & rpc);
 };
 

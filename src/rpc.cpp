@@ -275,7 +275,7 @@ void RPCNetwork::SyncBroadcast(int method, const Message & msg)
 
 void RPCNetwork::WaitForSync(int method, int count)
 {
-    EmptyMessage empty;
+    data::EmptyMessage empty;
     std::unordered_set<int> pending;
     for (int i = 1; i < m_word->Get_size(); ++i) {
         pending.insert(i);

@@ -17,6 +17,7 @@
 // @@protoc_insertion_point(includes)
 
 namespace hpgc {
+namespace data {
 
 namespace {
 
@@ -90,11 +91,12 @@ void protobuf_AssignDesc_rpc_2emessage_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RegisterWorkerRequest));
   TaskMessage_descriptor_ = file->message_type(2);
-  static const int TaskMessage_offsets_[4] = {
+  static const int TaskMessage_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TaskMessage, type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TaskMessage, dataindex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TaskMessage, starttime_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TaskMessage, endtime_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TaskMessage, description_),
   };
   TaskMessage_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -108,13 +110,14 @@ void protobuf_AssignDesc_rpc_2emessage_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(TaskMessage));
   DataMessage_descriptor_ = file->message_type(3);
-  static const int DataMessage_offsets_[8] = {
+  static const int DataMessage_offsets_[9] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, dataindex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, srcdatasource_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, srclayer_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, dstdatasource_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, dstlayer_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, features_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, value_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, description_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DataMessage, extension_),
   };
@@ -274,28 +277,30 @@ void protobuf_AddDesc_rpc_2emessage_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\021rpc.message.proto\022\004hpgc\"\016\n\014EmptyMessag"
-    "e\"#\n\025RegisterWorkerRequest\022\n\n\002id\030\001 \002(\005\"b"
-    "\n\013TaskMessage\022\034\n\004Type\030\001 \002(\0162\016.hpgc.TaskT"
-    "ype\022\021\n\tDataIndex\030\002 \002(\005\022\021\n\tStartTime\030\003 \002("
-    "\t\022\017\n\007EndTime\030\004 \002(\t\"\254\001\n\013DataMessage\022\021\n\tDa"
-    "taIndex\030\001 \002(\005\022\025\n\rSrcDataSource\030\002 \002(\t\022\020\n\010"
-    "SrcLayer\030\003 \002(\t\022\025\n\rDstDataSource\030\004 \002(\t\022\020\n"
-    "\010DstLayer\030\005 \002(\t\022\020\n\010features\030\006 \003(\005\022\023\n\013des"
-    "cription\030\007 \001(\t\022\021\n\textension\030\010 \001(\t\"/\n\nDat"
-    "aCellar\022!\n\006cellar\030\001 \003(\0132\021.hpgc.DataMessa"
-    "ge\"\024\n\006CCMsg1\022\n\n\002id\030\001 \002(\005\"\030\n\006CCMsg2\022\016\n\006Is"
-    "Done\030\001 \002(\010\"3\n\006CCMsg3\022\035\n\004Type\030\001 \002(\0162\017.hpg"
-    "c.LayerType\022\n\n\002id\030\002 \002(\005\"Q\n\006CCMsg4\022\016\n\006Col"
-    "umn\030\001 \002(\005\022\013\n\003Row\030\002 \002(\005\022\r\n\005Trans\030\003 \003(\001\022\r\n"
-    "\005Pixel\030\004 \002(\005\022\014\n\004Line\030\005 \002(\005*\304\001\n\013MessageTy"
-    "pe\022\023\n\017REGISTER_WORKER\020\001\022\023\n\017WORKER_RUN_TA"
-    "SK\020\002\022\024\n\020WORKER_TASK_DONE\020\003\022\023\n\017WORKER_FIN"
-    "ALIZE\020\004\022\030\n\024WORKER_FINALIZE_DONE\020\005\022\020\n\014CC_"
-    "MESSAGE_1\020\006\022\020\n\014CC_MESSAGE_2\020\007\022\020\n\014CC_MESS"
-    "AGE_3\020\010\022\020\n\014CC_MESSAGE_4\020\t*\'\n\010TaskType\022\013\n"
-    "\007TASK_OK\020\001\022\016\n\nTASK_WRONG\020\002*+\n\tLayerType\022"
-    "\r\n\tTWO_LAYER\020\001\022\017\n\013THREE_LAYER\020\002", 871);
+    "\n\021rpc.message.proto\022\thpgc.data\"\016\n\014EmptyM"
+    "essage\"#\n\025RegisterWorkerRequest\022\n\n\002id\030\001 "
+    "\002(\005\"|\n\013TaskMessage\022!\n\004Type\030\001 \002(\0162\023.hpgc."
+    "data.TaskType\022\021\n\tDataIndex\030\002 \002(\005\022\021\n\tStar"
+    "tTime\030\003 \002(\t\022\017\n\007EndTime\030\004 \002(\t\022\023\n\013descript"
+    "ion\030\005 \001(\t\"\273\001\n\013DataMessage\022\021\n\tDataIndex\030\001"
+    " \002(\005\022\025\n\rSrcDataSource\030\002 \002(\t\022\020\n\010SrcLayer\030"
+    "\003 \002(\t\022\025\n\rDstDataSource\030\004 \002(\t\022\020\n\010DstLayer"
+    "\030\005 \002(\t\022\020\n\010features\030\006 \003(\005\022\r\n\005value\030\007 \001(\005\022"
+    "\023\n\013description\030\010 \001(\t\022\021\n\textension\030\t \001(\t\""
+    "4\n\nDataCellar\022&\n\006cellar\030\001 \003(\0132\026.hpgc.dat"
+    "a.DataMessage\"\024\n\006CCMsg1\022\n\n\002id\030\001 \002(\005\"\030\n\006C"
+    "CMsg2\022\016\n\006IsDone\030\001 \002(\010\"8\n\006CCMsg3\022\"\n\004Type\030"
+    "\001 \002(\0162\024.hpgc.data.LayerType\022\n\n\002id\030\002 \002(\005\""
+    "Q\n\006CCMsg4\022\016\n\006Column\030\001 \002(\005\022\013\n\003Row\030\002 \002(\005\022\r"
+    "\n\005Trans\030\003 \003(\001\022\r\n\005Pixel\030\004 \002(\005\022\014\n\004Line\030\005 \002"
+    "(\005*\304\001\n\013MessageType\022\023\n\017REGISTER_WORKER\020\001\022"
+    "\023\n\017WORKER_RUN_TASK\020\002\022\024\n\020WORKER_TASK_DONE"
+    "\020\003\022\023\n\017WORKER_FINALIZE\020\004\022\030\n\024WORKER_FINALI"
+    "ZE_DONE\020\005\022\020\n\014CC_MESSAGE_1\020\006\022\020\n\014CC_MESSAG"
+    "E_2\020\007\022\020\n\014CC_MESSAGE_3\020\010\022\020\n\014CC_MESSAGE_4\020"
+    "\t*\'\n\010TaskType\022\013\n\007TASK_OK\020\001\022\016\n\nTASK_WRONG"
+    "\020\002*+\n\tLayerType\022\r\n\tTWO_LAYER\020\001\022\017\n\013THREE_"
+    "LAYER\020\002", 927);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rpc.message.proto", &protobuf_RegisterTypes);
   EmptyMessage::default_instance_ = new EmptyMessage();
@@ -747,6 +752,7 @@ const int TaskMessage::kTypeFieldNumber;
 const int TaskMessage::kDataIndexFieldNumber;
 const int TaskMessage::kStartTimeFieldNumber;
 const int TaskMessage::kEndTimeFieldNumber;
+const int TaskMessage::kDescriptionFieldNumber;
 #endif  // !_MSC_VER
 
 TaskMessage::TaskMessage()
@@ -769,6 +775,7 @@ void TaskMessage::SharedCtor() {
   dataindex_ = 0;
   starttime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   endtime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  description_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -782,6 +789,9 @@ void TaskMessage::SharedDtor() {
   }
   if (endtime_ != &::google::protobuf::internal::kEmptyString) {
     delete endtime_;
+  }
+  if (description_ != &::google::protobuf::internal::kEmptyString) {
+    delete description_;
   }
   if (this != default_instance_) {
   }
@@ -822,6 +832,11 @@ void TaskMessage::Clear() {
         endtime_->clear();
       }
     }
+    if (has_description()) {
+      if (description_ != &::google::protobuf::internal::kEmptyString) {
+        description_->clear();
+      }
+    }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -833,7 +848,7 @@ bool TaskMessage::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .hpgc.TaskType Type = 1;
+      // required .hpgc.data.TaskType Type = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -841,8 +856,8 @@ bool TaskMessage::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::hpgc::TaskType_IsValid(value)) {
-            set_type(static_cast< ::hpgc::TaskType >(value));
+          if (::hpgc::data::TaskType_IsValid(value)) {
+            set_type(static_cast< ::hpgc::data::TaskType >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -899,6 +914,23 @@ bool TaskMessage::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(42)) goto parse_description;
+        break;
+      }
+
+      // optional string description = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_description:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_description()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->description().data(), this->description().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -921,7 +953,7 @@ bool TaskMessage::MergePartialFromCodedStream(
 
 void TaskMessage::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .hpgc.TaskType Type = 1;
+  // required .hpgc.data.TaskType Type = 1;
   if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->type(), output);
@@ -950,6 +982,15 @@ void TaskMessage::SerializeWithCachedSizes(
       4, this->endtime(), output);
   }
 
+  // optional string description = 5;
+  if (has_description()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->description().data(), this->description().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->description(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -958,7 +999,7 @@ void TaskMessage::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* TaskMessage::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .hpgc.TaskType Type = 1;
+  // required .hpgc.data.TaskType Type = 1;
   if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->type(), target);
@@ -989,6 +1030,16 @@ void TaskMessage::SerializeWithCachedSizes(
         4, this->endtime(), target);
   }
 
+  // optional string description = 5;
+  if (has_description()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->description().data(), this->description().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->description(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -1000,7 +1051,7 @@ int TaskMessage::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .hpgc.TaskType Type = 1;
+    // required .hpgc.data.TaskType Type = 1;
     if (has_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
@@ -1025,6 +1076,13 @@ int TaskMessage::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->endtime());
+    }
+
+    // optional string description = 5;
+    if (has_description()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->description());
     }
 
   }
@@ -1066,6 +1124,9 @@ void TaskMessage::MergeFrom(const TaskMessage& from) {
     if (from.has_endtime()) {
       set_endtime(from.endtime());
     }
+    if (from.has_description()) {
+      set_description(from.description());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -1094,6 +1155,7 @@ void TaskMessage::Swap(TaskMessage* other) {
     std::swap(dataindex_, other->dataindex_);
     std::swap(starttime_, other->starttime_);
     std::swap(endtime_, other->endtime_);
+    std::swap(description_, other->description_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -1118,6 +1180,7 @@ const int DataMessage::kSrcLayerFieldNumber;
 const int DataMessage::kDstDataSourceFieldNumber;
 const int DataMessage::kDstLayerFieldNumber;
 const int DataMessage::kFeaturesFieldNumber;
+const int DataMessage::kValueFieldNumber;
 const int DataMessage::kDescriptionFieldNumber;
 const int DataMessage::kExtensionFieldNumber;
 #endif  // !_MSC_VER
@@ -1143,6 +1206,7 @@ void DataMessage::SharedCtor() {
   srclayer_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   dstdatasource_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   dstlayer_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  value_ = 0;
   description_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   extension_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1219,11 +1283,14 @@ void DataMessage::Clear() {
         dstlayer_->clear();
       }
     }
+    value_ = 0;
     if (has_description()) {
       if (description_ != &::google::protobuf::internal::kEmptyString) {
         description_->clear();
       }
     }
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     if (has_extension()) {
       if (extension_ != &::google::protobuf::internal::kEmptyString) {
         extension_->clear();
@@ -1342,12 +1409,28 @@ bool DataMessage::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(48)) goto parse_features;
-        if (input->ExpectTag(58)) goto parse_description;
+        if (input->ExpectTag(56)) goto parse_value;
         break;
       }
 
-      // optional string description = 7;
+      // optional int32 value = 7;
       case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_value:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &value_)));
+          set_has_value();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(66)) goto parse_description;
+        break;
+      }
+
+      // optional string description = 8;
+      case 8: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_description:
@@ -1359,12 +1442,12 @@ bool DataMessage::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(66)) goto parse_extension;
+        if (input->ExpectTag(74)) goto parse_extension;
         break;
       }
 
-      // optional string extension = 8;
-      case 8: {
+      // optional string extension = 9;
+      case 9: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_extension:
@@ -1445,22 +1528,27 @@ void DataMessage::SerializeWithCachedSizes(
       6, this->features(i), output);
   }
 
-  // optional string description = 7;
+  // optional int32 value = 7;
+  if (has_value()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->value(), output);
+  }
+
+  // optional string description = 8;
   if (has_description()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->description().data(), this->description().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      7, this->description(), output);
+      8, this->description(), output);
   }
 
-  // optional string extension = 8;
+  // optional string extension = 9;
   if (has_extension()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->extension().data(), this->extension().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      8, this->extension(), output);
+      9, this->extension(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1522,24 +1610,29 @@ void DataMessage::SerializeWithCachedSizes(
       WriteInt32ToArray(6, this->features(i), target);
   }
 
-  // optional string description = 7;
+  // optional int32 value = 7;
+  if (has_value()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->value(), target);
+  }
+
+  // optional string description = 8;
   if (has_description()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->description().data(), this->description().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        7, this->description(), target);
+        8, this->description(), target);
   }
 
-  // optional string extension = 8;
+  // optional string extension = 9;
   if (has_extension()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->extension().data(), this->extension().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        8, this->extension(), target);
+        9, this->extension(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1588,14 +1681,23 @@ int DataMessage::ByteSize() const {
           this->dstlayer());
     }
 
-    // optional string description = 7;
+    // optional int32 value = 7;
+    if (has_value()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->value());
+    }
+
+    // optional string description = 8;
     if (has_description()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->description());
     }
 
-    // optional string extension = 8;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // optional string extension = 9;
     if (has_extension()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1655,9 +1757,14 @@ void DataMessage::MergeFrom(const DataMessage& from) {
     if (from.has_dstlayer()) {
       set_dstlayer(from.dstlayer());
     }
+    if (from.has_value()) {
+      set_value(from.value());
+    }
     if (from.has_description()) {
       set_description(from.description());
     }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     if (from.has_extension()) {
       set_extension(from.extension());
     }
@@ -1691,6 +1798,7 @@ void DataMessage::Swap(DataMessage* other) {
     std::swap(dstdatasource_, other->dstdatasource_);
     std::swap(dstlayer_, other->dstlayer_);
     features_.Swap(&other->features_);
+    std::swap(value_, other->value_);
     std::swap(description_, other->description_);
     std::swap(extension_, other->extension_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
@@ -1775,7 +1883,7 @@ bool DataCellar::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .hpgc.DataMessage cellar = 1;
+      // repeated .hpgc.data.DataMessage cellar = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1808,7 +1916,7 @@ bool DataCellar::MergePartialFromCodedStream(
 
 void DataCellar::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .hpgc.DataMessage cellar = 1;
+  // repeated .hpgc.data.DataMessage cellar = 1;
   for (int i = 0; i < this->cellar_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->cellar(i), output);
@@ -1822,7 +1930,7 @@ void DataCellar::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* DataCellar::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .hpgc.DataMessage cellar = 1;
+  // repeated .hpgc.data.DataMessage cellar = 1;
   for (int i = 0; i < this->cellar_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1839,7 +1947,7 @@ void DataCellar::SerializeWithCachedSizes(
 int DataCellar::ByteSize() const {
   int total_size = 0;
 
-  // repeated .hpgc.DataMessage cellar = 1;
+  // repeated .hpgc.data.DataMessage cellar = 1;
   total_size += 1 * this->cellar_size();
   for (int i = 0; i < this->cellar_size(); i++) {
     total_size +=
@@ -2403,7 +2511,7 @@ bool CCMsg3::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .hpgc.LayerType Type = 1;
+      // required .hpgc.data.LayerType Type = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
@@ -2411,8 +2519,8 @@ bool CCMsg3::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::hpgc::LayerType_IsValid(value)) {
-            set_type(static_cast< ::hpgc::LayerType >(value));
+          if (::hpgc::data::LayerType_IsValid(value)) {
+            set_type(static_cast< ::hpgc::data::LayerType >(value));
           } else {
             mutable_unknown_fields()->AddVarint(1, value);
           }
@@ -2457,7 +2565,7 @@ bool CCMsg3::MergePartialFromCodedStream(
 
 void CCMsg3::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required .hpgc.LayerType Type = 1;
+  // required .hpgc.data.LayerType Type = 1;
   if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->type(), output);
@@ -2476,7 +2584,7 @@ void CCMsg3::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* CCMsg3::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required .hpgc.LayerType Type = 1;
+  // required .hpgc.data.LayerType Type = 1;
   if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->type(), target);
@@ -2498,7 +2606,7 @@ int CCMsg3::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required .hpgc.LayerType Type = 1;
+    // required .hpgc.data.LayerType Type = 1;
     if (has_type()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
@@ -2961,6 +3069,7 @@ void CCMsg4::Swap(CCMsg4* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace data
 }  // namespace hpgc
 
 // @@protoc_insertion_point(global_scope)

@@ -77,7 +77,7 @@ bool CheckAllFinished()
 int MasterRole::Action()
 {
     TaskState * task = nullptr;
-    DataMessage * drequest = nullptr;
+    data::DataMessage * drequest = nullptr;
     while (m_masterRunning) {
         if (CheckAllFinished()) {
             m_masterRunning = false;
@@ -90,7 +90,7 @@ int MasterRole::Action()
             m_activeSlaves.pop();
             drequest = data::DataMessageFromBarral(task->dt);
             ON_SCOPE_EXIT([&]() {delete drequest; });
-            m_net->Send(slave, MessageType::WORKER_RUN_TASK, *drequest);
+            m_net->Send(slave, data::MessageType::WORKER_RUN_TASK, *drequest);
             task->slave = slave;
             task->status = TaskState::ACTIVE;
         }
@@ -99,8 +99,8 @@ int MasterRole::Action()
         [&](std::pair<const Taskid, TaskState *> & pair) {
             if (pair.second->status == TaskState::ACTIVE) {
                 int source = -1;
-                TaskMessage tRequest;
-                if (m_net->TryRead(pair.second->slave, MessageType::WORKER_TASK_DONE, &tRequest, &source)) {
+                data::TaskMessage tRequest;
+                if (m_net->TryRead(pair.second->slave, data::MessageType::WORKER_TASK_DONE, &tRequest, &source)) {
                     data::Record stat = data::RecordFromTaskMessage(&tRequest);
                     stat.slave = pair.second->slave;
                     m_statistics.push_back(stat);
@@ -122,9 +122,9 @@ MasterRole::MasterRole(data::VectorCellar * cellar)
         m_task[Taskid(i)] = new TaskState(Taskid(i), cellar->GetByIndex(i));
     }
     for (int i = 0; i < m_net->Size() - 1; ++i) {
-        RegisterWorkerRequest req;
+        data::RegisterWorkerRequest req;
         int src = 0;
-        m_net->Read(rpc::ANY_SOURCE, MessageType::REGISTER_WORKER, &req, &src);
+        m_net->Read(rpc::ANY_SOURCE, data::MessageType::REGISTER_WORKER, &req, &src);
         m_activeSlaves.push(src);
     }
 }
@@ -132,8 +132,8 @@ MasterRole::MasterRole(data::VectorCellar * cellar)
 MasterRole::~MasterRole()
 {
     for (int i = 0; i < m_net->Size() - 1; ++i) {
-        EmptyMessage req;
-        m_net->Send(i + 1, MessageType::WORKER_FINALIZE, req);
+        data::EmptyMessage req;
+        m_net->Send(i + 1, data::MessageType::WORKER_FINALIZE, req);
     }
 }
 

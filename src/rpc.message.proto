@@ -1,4 +1,4 @@
-package hpgc;
+package hpgc.data;
 
 enum MessageType{
     REGISTER_WORKER = 1;
@@ -32,6 +32,7 @@ message TaskMessage{
     required int32 DataIndex = 2;
     required string StartTime = 3;
     required string EndTime = 4;
+    optional string description = 5;
 }
 
 message DataMessage{
@@ -41,8 +42,9 @@ message DataMessage{
     required string DstDataSource = 4;
     required string DstLayer = 5;
     repeated int32 features = 6;
-    optional string description = 7;
-    optional string extension = 8;
+    optional int32 value = 7;
+    optional string description = 8;
+    optional string extension = 9;
 }
 
 message DataCellar{
