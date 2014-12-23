@@ -281,9 +281,7 @@ void RPCNetwork::WaitForSync(int method, int count)
         pending.insert(i);
     }
     while (!pending.empty()) {
-        for (std::unordered_set<int>::iterator i = pending.begin();
-             i != pending.end();
-             ++i) {
+        for (auto i = pending.begin(); i != pending.end(); ++i) {
             if (check_reply_queue(*i, method, nullptr)) {
                 pending.erase(i);
             }
